@@ -1,0 +1,19 @@
+
+<div class="col1">
+  <div class="cont">
+    <div class="cont-col1">
+      <div class="label label-success"><i class="icon-calendar"></i></div>
+    </div>
+    <div class="cont-col2">
+      <div class="desc">
+        <h4 style="margin:0;">New Exercise</h4><span class="date-color">{{ resourcePool[value.uid].createdAt | fromNow }}</span>
+        <div style="margin-top:5px;"><a href="#/admin/themis/schedule/{{ value.eventUid }}" class="color-blue">{{ resourcePool[value.eventUid].name }}</a>created by {{ resourcePool[value.employeeUid].firstName }} {{ resourcePool[value.employeeUid].lastName }}<span data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length">
+            (
+            {{ (resourcePool[value.uid].event.eventParticipants | toArray).length }}<span data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length &gt; 1">Participants</span><span data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length == 1">Participant</span>)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col2">
+  <div class="date">{{ resourcePool[value.uid].createdAt | date:'short' }}</div>
+</div>

@@ -1,0 +1,15 @@
+.col1
+  .cont
+    .cont-col1
+      .label.label-success
+        i.icon-list-ol
+    .cont-col2
+      .desc
+        h4(style="margin:0;") New Dictionary
+        span.date-color {{ resourcePool[value.uid].createdAt | fromNow }}
+        div(style="margin-top:5px;")
+          a.color-blue(href="#/admin/themis/settings/dictionaries/{{ value.dictionaryUid }}") {{ resourcePool[value.dictionaryUid].name }}
+          | created by {{ resourcePool[value.employeeUid].firstName }} {{ resourcePool[value.employeeUid].lastName }}
+.col2
+  .date
+    | {{ resourcePool[value.uid].createdAt | date:'short' }}

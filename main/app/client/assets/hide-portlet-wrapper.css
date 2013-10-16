@@ -1,0 +1,12 @@
+.no-wrapper > div > .portlet.box {
+  box-shadow: none !important;
+  border: 0px !important;
+}
+
+.no-wrapper > div > .portlet.box > .portlet-title {
+  display: none;
+}
+
+.no-wrapper > div > .portlet.box > .portlet-body {
+  background-color: #FFF !important;
+}

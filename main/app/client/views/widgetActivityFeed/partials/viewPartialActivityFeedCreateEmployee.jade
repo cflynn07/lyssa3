@@ -1,0 +1,14 @@
+.col1
+  .cont
+    .cont-col1
+      .label.label-success
+        i.icon-user
+    .cont-col2
+      .desc
+        h4(style="margin:0;") New Employee
+        span.date-color {{ resourcePool[value.uid].createdAt | fromNow }}
+        div(style="margin-top:5px;")
+          | {{ resourcePool[value.employee.uid].firstName }} {{ resourcePool[value.employee.uid].lastName }}
+.col2
+  .date
+    | {{ resourcePool[value.uid].createdAt | date:'short' }}

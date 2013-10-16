@@ -1,0 +1,164 @@
+
+<div data-ng-controller="ControllerWidgetEmployeeManager">
+  <div data-ng-show="viewModel.routeParams.employeeUid">
+    <div class="row-fluid">
+      <div style="padding-bottom:10px;" class="span3">     
+        <div class="span6"><a href="{{ '#' + viewRoot }}" class="btn blue"><i class="icon-arrow-left m-icon-white"></i>&nbsp;Employees</a></div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div style="margin:0;" class="span12">
+        <div data-animate-in="data-animate-in" class="portlet box grey">
+          <div class="portlet-title">
+            <h4><span>Edit Employee: {{ resourcePool[viewModel.routeParams.employeeUid].firstName + ' ' + resourcePool[viewModel.routeParams.employeeUid].lastName }}</span></h4>
+          </div>
+          <div class="portlet-body form">
+            <form name="editEmployeeForm" novalidate="novalidate" class="horizontal-form">
+              <div class="row-fluid">
+                <div class="span6">
+                  <div data-ng-class="{success:editEmployeeForm.firstName.$valid, error:!editEmployeeForm.firstName.$valid, 'ng-pristine':editEmployeeForm.firstName.$pristine}" class="control-group">
+                    <label for="firstName" class="control-label">First Name</label>
+                    <div class="controls input-icon">
+                      <input data-required="data-required" type="text" data-ng-disabled="updateInProgress" data-ng-model="viewModel.editEmployeeForm.firstName" data-ng-minlength="{{clientOrmShare.employee.model.firstName.validate.len[0]}}" data-ng-maxlength="{{clientOrmShare.employee.model.firstName.validate.len[1]}}" name="firstName" placeholder="Jane" class="m-wrap span10"/><span data-ng-show="editEmployeeForm.firstName.$dirty &amp;&amp; editEmployeeForm.firstName.$valid" class="input-success"><i class="icon-ok"></i></span><span data-ng-show="editEmployeeForm.firstName.$dirty &amp;&amp; editEmployeeForm.firstName.$invalid" class="input-error"><i class="icon-exclamation-sign"></i></span><span data-ng-show="editEmployeeForm.firstName.$error.minlength" class="help-inline">First name must be longer than {{clientOrmShare.employee.model.firstName.validate.len[0]}} characters</span><span data-ng-show="editEmployeeForm.firstName.$error.maxlength" class="help-inline">First name must be shorter than {{clientOrmShare.employee.model.firstName.validate.len[1]}} characters</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span6">
+                  <div data-ng-class="{success:editEmployeeForm.lastName.$valid, error:!editEmployeeForm.lastName.$valid, 'ng-pristine':editEmployeeForm.lastName.$pristine}" class="control-group">
+                    <label for="lastName" class="control-label">Last Name</label>
+                    <div class="controls input-icon">
+                      <input data-required="data-required" type="text" data-ng-disabled="updateInProgress" data-ng-model="viewModel.editEmployeeForm.lastName" data-ng-minlength="{{clientOrmShare.employee.model.lastName.validate.len[0]}}" data-ng-maxlength="{{clientOrmShare.employee.model.lastName.validate.len[1]}}" name="lastName" placeholder="Doe" class="m-wrap span10"/><span data-ng-show="editEmployeeForm.lastName.$dirty &amp;&amp; editEmployeeForm.lastName.$valid" class="input-success"><i class="icon-ok"></i></span><span data-ng-show="editEmployeeForm.lastName.$dirty &amp;&amp; editEmployeeForm.lastName.$invalid" class="input-error"><i class="icon-exclamation-sign"></i></span><span data-ng-show="editEmployeeForm.lastName.$error.minlength" class="help-inline">Last name must be longer than {{clientOrmShare.employee.model.lastName.validate.len[0]}} characters</span><span data-ng-show="editEmployeeForm.lastName.$error.maxlength" class="help-inline">Last name must be shorter than {{clientOrmShare.employee.model.lastName.validate.len[1]}} characters</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span6">
+                  <div data-ng-class="{success:editEmployeeForm.email.$valid, error:!editEmployeeForm.email.$valid, 'ng-pristine':editEmployeeForm.email.$pristine}" class="control-group">
+                    <label for="email" class="control-label">Email</label>
+                    <div class="controls input-icon">
+                      <input data-required="data-required" type="email" data-ng-disabled="updateInProgress" data-ng-model="viewModel.editEmployeeForm.email" data-unique-field="{&quot;resource&quot;: &quot;employee&quot;, &quot;property&quot;: &quot;email&quot;}" name="email" placeholder="jane@company.com" class="m-wrap span10"/><span data-ng-show="editEmployeeForm.email.$dirty &amp;&amp; editEmployeeForm.email.$valid" class="input-success"><i class="icon-ok"></i></span><span data-ng-show="editEmployeeForm.email.$dirty &amp;&amp; editEmployeeForm.email.$invalid" class="input-error"><i class="icon-exclamation-sign"></i></span><span data-ng-show="editEmployeeForm.email.$error.email" class="help-inline">Enter a valid email address</span><span data-ng-show="editEmployeeForm.email.$error.uniqueField" class="help-inline">Another employee with the email address<strong>{{ viewModel.editEmployeeForm.email }}</strong>already exists</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="span6">
+                  <div data-ng-class="{success:editEmployeeForm.phone.$valid, error:!editEmployeeForm.phone.$valid, 'ng-pristine':editEmployeeForm.phone.$pristine}" class="control-group">
+                    <label for="phone" class="control-label">Phone Number</label>
+                    <div class="controls input-icon">
+                      <input data-required="data-required" type="text" data-ng-disabled="updateInProgress" data-unique-field="{&quot;resource&quot;: &quot;employee&quot;, &quot;property&quot;: &quot;phone&quot;}" data-ui-mask="'999-999-9999'" data-ng-model="viewModel.editEmployeeForm.phone" name="phone" placeholder="999-999-9999" class="m-wrap span10"/><span data-ng-show="editEmployeeForm.phone.$dirty &amp;&amp; editEmployeeForm.phone.$valid" class="input-success"><i class="icon-ok"></i></span><span data-ng-show="editEmployeeForm.phone.$dirty &amp;&amp; editEmployeeForm.phone.$invalid" class="input-error"><i class="icon-exclamation-sign"></i></span><span data-ng-show="editEmployeeForm.phone.$error" class="help-inline">Enter a valid phone number</span><span data-ng-show="editEmployeeForm.phone.$error.uniqueField" class="help-inline">Another employee with the phone number<strong>{{viewModel.editEmployeeForm.phone}}</strong>already exists</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="display:none;" class="row-fluid">
+                <div class="span6">
+                  <div class="control-group">
+                    <label for="delegate" class="control-label">Delegate</label>
+                    <div class="controls">
+                      <div class="controls">
+                        <label class="checkbox line">
+                          <div class="checker"><span data-ng-class="{checked: viewModel.editEmployeeForm.delegate}" data-ng-click="viewModel.editEmployeeForm.delegate = !viewModel.editEmployeeForm.delegate">
+                              <input type="checkbox" data-ng-model="viewModel.editEmployeeForm.delegate" name="delegate"/></span></div>This employee is a delegate
+                        </label><span class="help-inline">This will create an account for your delegate to log-in and submit exercises</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <!--
+                <button data-ng-disabled="editEmployeeForm.$invalid || viewModel.editEmployeeFormSubmitting" data-ng-click="viewModel.updateEmployee()" type="submit" class="btn green pull-right"><i class="icon-pencil m-icon-white"></i><span style="color:#FFF !important;" data-ng-show="!viewModel.editEmployeeFormSubmitting">Update Employee</span><span style="color:#FFF !important;" data-ng-show="viewModel.editEmployeeFormSubmitting">Saving...</span></button>
+                -->
+                <button data-ng-class="{true:'black',false:'green'}[!!viewModel.editEmployeeFormSubmitting]" type="submit" data-ng-disabled="editEmployeeForm.$invalid || !!viewModel.editEmployeeFormSubmitting" data-ng-click="viewModel.updateEmployee()" class="btn green pull-right">
+                  <p data-ng-hide="!!viewModel.editEmployeeFormSubmitting" style="margin-bottom:0px;">&nbsp;Update</p>
+                  <p data-ng-show="!!viewModel.editEmployeeFormSubmitting" style="margin-bottom:0px;"><i class="icon-cog icon-spin"></i>&nbsp;Saving...</p>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-ng-show="!viewModel.routeParams.employeeUid">
+    <div style="margin-bottom:10px;" class="row-fluid">
+      <div class="span3">
+        <div class="span6">
+          <button data-ng-hide="viewModel.showAddNewEmployee" data-ng-animate="{show: 'fadeIn', hide: 'fadeOut'}" data-ng-click="viewModel.showAddNewEmployee = true" class="btn green btn-block"><i class="icon-plus m-icon-white"></i>&nbsp;New Employee</button>
+        </div>
+        <div data-ng-init="activeViewType = 'employees'" class="span6">
+          <button data-ng-show="activeViewType == 'employees'" data-ng-click="activeViewType = 'organization'" class="btn blue btn-block"><i class="icon-sitemap"></i>&nbsp;Organization</button>
+          <button data-ng-show="activeViewType == 'organization'" data-ng-click="activeViewType = 'employees'" style="margin-top:0;" class="btn blue btn-block"><i class="icon-list"></i>&nbsp;Employees</button>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div style="display:none;" data-ng-animate="{show:'slideDown'}" data-ng-show="viewModel.showAddNewEmployee" class="span12">
+        <div class="portlet box grey">
+          <div class="portlet-title">
+            <h4><span>Add Employees</span></h4>
+            <div class="actions"><a data-ng-click="viewModel.showAddNewEmployeeClose()" class="btn red"><i class="icon-remove"></i>Cancel</a></div>
+          </div>
+          <div class="portlet-body light-grey form">
+            <div data-ng-show="viewModel.addNewEmployeeMode === false">
+              <h4>
+                 
+                Hey {{ rootEmployee.firstName }}, do you want to add an individual employee by filling out a form, or 
+                do you want to upload a CSV file of employees?
+              </h4>
+              <hr/>
+              <p style="width:100%;text-align:center;"><a style="min-height:55px; margin-left:5px;" data-ng-click="viewModel.addNewEmployeeMode = 'csv'" class="btn blue big span3 pull-right"><i class="icon-file m-icon-white"></i>&nbsp;CSV Upload</a><a style="min-height:55px;" data-ng-click="viewModel.addNewEmployeeMode = 'manual'" class="btn green big span3 pull-right"><i class="icon-plus m-icon-white"></i>&nbsp;Add Manually</a></p>
+              <div class="clearfix"></div>
+            </div>
+            <div data-ng-switch="viewModel.addNewEmployeeMode">
+              <div data-ng-include="'viewPartialEmployeeManagerAddManualForm'" data-ng-switch-when="manual"></div>
+              <div data-ng-include="'viewPartialEmployeeManagerAddCSVForm'" data-ng-switch-when="csv"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-ng-show="activeViewType == 'organization'" class="row-fluid">
+      <div data-animate-in="data-animate-in" class="portlet box grey">
+        <div class="portlet-title">
+          <h4><span>Organization Structure</span></h4>
+        </div>
+        <div class="portlet-body">
+          <div data-space-tree="data-space-tree" style="height:400px; background-image:url('/assets/img/tiny_grid.png');" data-values="">       </div>
+        </div>
+      </div>
+    </div>
+    <div data-ng-show="activeViewType == 'employees'" class="row-fluid">
+      <div data-animate-in="data-animate-in" class="portlet box grey">
+        <div class="portlet-title">
+          <h4><span>Employees ({{ viewModel.employeesListLength }})</span></h4>
+        </div>
+        <div class="portlet-body">
+          <div data-ng-animate="{show: 'fadeIn'}" data-ng-hide="viewModel.showAddNewEmployee" class="row-fluid">
+            <!--
+            <div class="span6">&nbsp;</div>
+            <div class="span6">
+              <button style="margin-bottom: 5px;" data-ng-click="viewModel.showAddNewEmployeeOpen()" class="btn green btn-block">Add Employees<i class="m-icon-swapright m-icon-white"></i></button>
+            </div>
+            -->
+          </div>
+          <table data-data-table="viewModel.employeeListDT.options" ao-column-defs="viewModel.employeeListDT.columnDefs" data-parent-model="viewModel.employeeListDT" aa-data="viewModel.employees" data-parent-data-table-view-model-prop="employeeListDT" update-on-resource-post="employee" fn-row-callback="fn-row-callback" class="table table-striped table-hover table-bordered dataTable">
+            <thead>
+              <tr>
+                <th class="sorting">First Name</th>
+                <th class="sorting">Last Name</th>
+                <th class="sorting">Email</th>
+                <th class="sorting">Phone Number</th>
+                <th class="sorting_disabled">Type</th>
+                <th class="sorting_disabled">{{ rootClient.businessDivision0Name }}</th>
+                <th class="sorting_disabled">{{ rootClient.businessDivision1Name }}</th>
+                <th class="sorting_disabled">{{ rootClient.businessDivision2Name }}</th>
+                <th class="sorting_disabled"></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

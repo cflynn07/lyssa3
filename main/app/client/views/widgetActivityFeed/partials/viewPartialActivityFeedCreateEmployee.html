@@ -1,0 +1,17 @@
+
+<div class="col1">
+  <div class="cont">
+    <div class="cont-col1">
+      <div class="label label-success"><i class="icon-user"></i></div>
+    </div>
+    <div class="cont-col2">
+      <div class="desc">
+        <h4 style="margin:0;">New Employee</h4><span class="date-color">{{ resourcePool[value.uid].createdAt | fromNow }}</span>
+        <div style="margin-top:5px;">{{ resourcePool[value.employee.uid].firstName }} {{ resourcePool[value.employee.uid].lastName }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col2">
+  <div class="date">{{ resourcePool[value.uid].createdAt | date:'short' }}</div>
+</div>

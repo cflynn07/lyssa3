@@ -1,0 +1,91 @@
+li(data-ng-class = "{true:'active'}[locationHash == '/admin/themis']"
+   data-ng-click = "setCurrentActiveMenuItem('')")
+  a(href = "#/admin/themis")
+    i.icon-home
+    span.title Dashboard
+    span.selected
+
+
+
+li(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/exercises') === 0]"
+   data-ng-click = "setCurrentActiveMenuItem('')")
+  a(href = "#/admin/themis/exercises")
+    i.icon-table
+    span.title Exercises
+    span.selected
+
+
+
+
+li(data-ng-class = "{ 'active':(locationHash.indexOf('/admin/themis/templates') === 0), 'open':(currentActiveMenuItem == 'templates') }"
+   data-ng-click = "setCurrentActiveMenuItem('templates')")
+  //a(href = "#/admin/themis/templates")
+  a(href = "#/admin/themis/templates")
+    i.icon-cogs
+    span.title Templates
+    //span.arrow(data-ng-class = "{true:'open'}[currentActiveMenuItem == 'templates' || locationHash.indexOf('/admin/themis/templates') === 0]")
+    span.selected
+  //
+    ul.sub-menu(data-ng-show    = "locationHash.indexOf('/admin/themis/templates') === 0 || currentActiveMenuItem == 'templates'"
+                data-ng-animate = "{show:'slideDown', hide:'slideUp'}")
+      li
+        a(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/templates/full') === 0]"
+          data-ng-click = "setCurrentActiveMenuItem('templates')"
+          href          = "#/admin/themis/templates/full") Full Exercises
+      li
+        a(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/templates/mini') === 0]"
+          data-ng-click = "setCurrentActiveMenuItem('templates')"
+          href          = "#/admin/themis/templates/mini") Mini Exercises
+
+//
+  li(data-ng-class = "{ 'active':(locationHash.indexOf('/admin/themis/reports') === 0), 'open':(currentActiveMenuItem == 'reports') }"
+     data-ng-click = "setCurrentActiveMenuItem('reports')")
+    a
+      i.icon-bar-chart
+      span.title Reports
+      span.arrow(data-ng-class = "{true:'open'}[currentActiveMenuItem == 'reports' || locationHash.indexOf('/admin/themis/reports') === 0]")
+      span.selected
+    ul.sub-menu(data-ng-show    = "locationHash.indexOf('/admin/themis/reports') === 0 || currentActiveMenuItem == 'reports'"
+                data-ng-animate = "{show:'slideDown', hide:'slideUp'}")
+      li
+        a(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/reports/timeline') === 0]"
+          data-ng-click = "setCurrentActiveMenuItem('reports')"
+          href          = "#/admin/themis/reports/timeline") Timeline
+
+//
+  li(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/repository') === 0]"
+     data-ng-click = "setCurrentActiveMenuItem('')")
+    a(href = "#/admin/themis/repository")
+      i.icon-table
+      span.title Repository
+      span.selected
+
+
+li(data-ng-class = "{ 'active':(locationHash.indexOf('/admin/themis/settings') === 0), 'open':(currentActiveMenuItem == 'settings') }"
+   data-ng-click = "setCurrentActiveMenuItem('settings')")
+  //a(href = "#/admin/themis/settings")
+  a
+    i.icon-user
+    span.title Settings
+    span.arrow(data-ng-class = "{true:'open'}[currentActiveMenuItem == 'settings' || locationHash.indexOf('/admin/themis/settings') === 0]")
+    span.selected
+  ul.sub-menu(data-ng-show    = "locationHash.indexOf('/admin/themis/settings') === 0 || currentActiveMenuItem == 'settings'"
+              data-ng-animate = "{show:'slideDown', hide:'slideUp'}")
+    li
+      a(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/settings/dictionaries') === 0]"
+        data-ng-click = "setCurrentActiveMenuItem('settings')"
+        href          = "#/admin/themis/settings/dictionaries") Dictionaries
+    li
+      a(data-ng-class = "{true:'active'}[locationHash.indexOf('/admin/themis/settings/employees') === 0]"
+        data-ng-click = "setCurrentActiveMenuItem('settings')"
+        href          = "#/admin/themis/settings/employees") Employees
+
+
+
+
+
+li
+  // BEGIN SIDEBAR TOGGLER BUTTON
+  .sidebar-toggler.hidden-phone(data-ng-click = "sidebarClosedToggle()")
+  // BEGIN SIDEBAR TOGGLER BUTTON
+  br

@@ -1,0 +1,402 @@
+/***
+Page sidebar
+***/
+.page-sidebar > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.page-sidebar > ul > li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0px;
+}
+
+.page-sidebar > ul > li.start > a {
+   border-top-color: transparent !important;
+}
+
+.page-sidebar > ul > li:last-child > a {
+   border-bottom: 1px solid transparent !important;
+}
+
+.page-sidebar > ul > li > a {
+  display: block;
+  position: relative;
+  margin: 0;
+  border: 0px;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.page-sidebar > ul > li > a i {
+  font-size: 16px;
+  margin-right: 5px;
+  text-shadow:none;
+}
+
+.page-sidebar > ul > li.active > a {
+  border: none;
+  text-shadow:none;
+}
+
+/*
+.page-sidebar > ul > li.active > a .selected {
+  display: block;
+  width: 8px;
+  height: 25px;
+  background-image: url("../img/sidebar-menu-arrow.png");
+  float: right;
+  position: absolute;
+  right:0px;
+  top:8px;
+}
+*/
+
+.page-sidebar ul > li > a > .arrow:before {
+   float: right;
+   margin-top: 1px;
+   margin-right: 5px;
+   display: inline;
+   font-size: 16px;
+   font-family: FontAwesome;
+   height: auto;
+   content: "\f104";
+   font-weight: 300;
+   text-shadow:none;
+}
+
+.page-sidebar > ul > li > a > .arrow.open:before {
+   float: right;
+   margin-top: 1px;
+   margin-right: 3px;
+   display: inline;
+   font-family: FontAwesome;
+   height: auto;
+   font-size: 16px;
+   content: "\f107";
+   font-weight: 300;
+   text-shadow:none;
+}
+
+.page-sidebar > ul > li > ul.sub-menu {
+  display: none;
+  list-style: none;
+  clear: both;
+  margin: 8px 0px 8px 0px;
+}
+
+.page-sidebar > ul > li.active > ul.sub-menu {
+  display: block;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li {
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 1px !important;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li > a {
+  display: block;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px;
+  padding-left: 44px !important;
+  color: #000;
+  text-decoration: none;
+  text-shadow: 0 1px 1px #000;
+  font-size: 14px;
+  font-weight: 300;
+  background: none;
+}
+.page-sidebar > ul > li > ul.sub-menu > li > a.active {
+  background: #DDD;
+}
+.page-sidebar > ul > li > ul.sub-menu > li > a:hover {
+  background: #DDD;
+}
+
+/* 3rd level sub menu */
+.page-sidebar > ul > li > ul.sub-menu  > li ul.sub-menu {
+  display: none;
+  list-style: none;
+  clear: both;
+  margin: 0px 0px 0px 0px;
+}
+
+.page-sidebar > ul > li > ul.sub-menu  li > a > .arrow:before   {
+   float: right;
+   margin-top: 1px;
+   margin-right: 20px;
+   display: inline;
+   font-size: 16px;
+   font-family: FontAwesome;
+   height: auto;
+   content: "\f104";
+   font-weight: 300;
+   text-shadow:none;
+}
+
+.page-sidebar > ul > li > ul.sub-menu  li > a > .arrow.open:before {
+   float: right;
+   margin-top: 1px;
+   margin-right: 18px;
+   display: inline;
+   font-family: FontAwesome;
+   height: auto;
+   font-size: 16px;
+   content: "\f107";
+   font-weight: 300;
+   text-shadow:none;
+}
+
+.page-sidebar > ul > li.active > ul.sub-menu > li.active ul.sub-menu {
+  display: block;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li  ul.sub-menu li {
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 1px !important;
+}
+
+.page-sidebar > ul > li > ul.sub-menu  li > ul.sub-menu > li > a {
+  display: block;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0px;
+  color: #ccc;
+  text-decoration: none;
+  text-shadow: 0 1px 1px #000;
+  font-size: 14px;
+  font-weight: 300;
+  background: none;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li > ul.sub-menu > li > a {
+  padding-left: 60px;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li > a {
+  padding-left: 80px;
+}
+
+.page-sidebar > ul > li.active > ul.sub-menu > li.active ul.sub-menu > li.active ul.sub-menu {
+  display: block;
+}
+
+
+.page-sidebar > ul > li > ul.sub-menu  li > ul.sub-menu > li > a > i {
+  font-size: 13px;
+}
+
+/* sidebar search */
+
+.page-sidebar .sidebar-search {
+  margin: 8px 20px 20px 20px;
+}
+
+.page-sidebar .sidebar-search .submit {
+  display: block;
+  float: right;
+  margin-top: 8px;
+  width: 13px;
+  height: 13px;
+  background-image: url(../img/search-icon.png);
+  background-repeat: no-repeat;
+}
+
+.page-sidebar .sidebar-search input {
+  margin: 0px;
+  width: 165px;
+  border: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  font-size: 14px ;
+  box-shadow: none;
+}
+
+.page-sidebar .sidebar-search .input-box {
+   padding-bottom: 2px;
+   border-bottom:1px solid #959595;
+}
+
+/***
+Sidebar toggler(show/hide)
+***/
+
+.sidebar-toggler {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  margin-top: 15px;
+  margin-left: 175px;
+  width: 29px;
+  height: 29px;
+  background-repeat: no-repeat;
+}
+
+.sidebar-toggler:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+.sidebar-closed .sidebar-toggler {
+  margin-left: 3px;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search {
+  height: 34px;
+  width: 29px;
+  margin-left: 3px;
+  margin-bottom: 0px;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search input {
+  display: none;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search .submit {
+  margin: 11px 7px !important;
+  display: block !important;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search .input-box {
+  border-bottom: 0;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search.open {
+  height: 34px;
+  width: 255px;
+  overflow: hidden;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search.open input {
+  margin-top: 3px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  width: 180px;
+  display: inline-block !important;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search.open .submit {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin: 10px 8px 9px 6px !important;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search.open .remove {
+  background-repeat: no-repeat;
+  width: 11px;
+  height: 11px;
+  margin: 11px 6px 7px 8px !important;
+  display: inline-block !important;
+  float: left !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li > a .selected {
+  right: -3px !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li > a > .title,
+.sidebar-closed > .page-sidebar > ul > li > a > .arrow {
+  display: none !important;
+}
+
+.sidebar-closed .sidebar-toggler {
+  margin-right: 3px;
+}
+
+.sidebar-closed .page-sidebar .sidebar-search {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.sidebar-closed > .page-sidebar > ul {
+  width: 35px !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li > a {
+  padding-left: 7px;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover {
+  width: 225px;
+  position: relative;
+  z-index: 2000;
+  display: block !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover .selected {
+  display: none;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover > a > i {
+  margin-right: 10px;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover .title {
+  display: inline !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li > .sub-menu {
+  display: none !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover > .sub-menu {
+  width: 189px;
+  position: absolute;
+  z-index: 2000;
+  left: 36px;
+  margin-top: 0;
+  top: 100%;
+  display: block !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover > .sub-menu > li > .sub-menu,
+.sidebar-closed > .page-sidebar > ul > li:hover > .sub-menu > li > .sub-menu > li > .sub-menu {
+  width: 189px;
+}
+
+/* 2rd level sub menu*/
+.sidebar-closed > .page-sidebar > ul > li:hover > .sub-menu > li > a {
+  padding-left: 15px !important;
+}
+
+/* 3rd level sub menu*/
+.sidebar-closed > .page-sidebar > ul > li > ul.sub-menu > li > .sub-menu > li > a {
+  padding-left: 30px !important;
+}
+
+/* 4rd level sub menu*/
+.sidebar-closed > .page-sidebar > ul > li > ul.sub-menu > li > .sub-menu > li > .sub-menu > li > a {
+  padding-left: 45px !important;
+}
+
+/* sidebar container */
+
+.sidebar-closed > .page-sidebar {
+  width: 35px;
+}
+
+.sidebar-closed > .page-content {
+  margin-left: 35px !important;
+}
+
+/* ie8 fixes */
+.ie8 .page-sidebar {
+  position: absolute;
+  width: 225px;
+}
+
+.ie8 .page-sidebar ul{
+  width: 225px;
+}

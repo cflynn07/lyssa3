@@ -1,0 +1,7 @@
+define [
+  'underscore'
+], (
+  _
+) ->
+
+  return {}

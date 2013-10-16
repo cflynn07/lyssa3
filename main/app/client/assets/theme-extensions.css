@@ -1,0 +1,673 @@
+/**
+ *     Attempt to organize all extensions to CSS
+ *     -----------------------------------------
+ */
+
+/*
+    Tweaking appearance
+    -------------------
+*/
+body {
+    background-color: #F1F1F1;
+    overflow-y: scroll;
+}
+
+
+.btn .ng-pristine span, .btn .ng-pristine label, .btn .ng-pristine input, .btn .ng-pristine textarea, .btn .ng-pristine select {
+  color: #FFF !important;
+}
+.btn span, .btn p {
+  color: #FFF !important;
+  font-weight: 300;
+}
+.btn span.activity, .btn p.activity {
+  font-style: italic;
+}
+.btn.btn-inline {
+  margin-right: 4px;
+}
+
+.page-content {
+    background-color: #FFF;
+    margin-left: 183px;
+    border-left: 2px solid #EEE !important;
+}
+.page-content-quiz-mode {
+  margin-left: 0px !important;
+}
+
+.sidebar-closed ul > li > a .selected {
+  right: -7px !important;
+}
+.sidebar-closed .sidebar-toggler {
+  margin-left: 4px !important;
+}
+.page-title small {
+    color: #434343;
+}
+.header .navbar-inner {
+  background-color: #555555 !important;
+  border-bottom: 2px solid #094AB2;
+}
+.header .navbar-inner .dropdown-menu{
+  border: 2px solid #094AB2;
+  margin-top: 0;
+}
+.header .header-product-button:hover {
+  background-color: #094AB2 !important;
+}
+
+.sidebar-closed > .page-sidebar > ul > li:hover > .sub-menu {
+  background-color: #F1F1F1;
+  margin-left: 4px;
+  width: 185px;
+}
+.sidebar-closed > .page-sidebar > ul > li > a .selected {
+  right: -7px !important;
+}
+
+@media (max-width: 979px) {
+  .page-content {
+    margin-left: 0 !important;
+  }
+  .page-sidebar.in {
+    height: auto;
+  }
+  .page-sidebar ul {
+    width: 100% !important;
+  }
+  .sidebar-closed .page-content {
+    margin-left: 0 !important;
+  }
+}
+
+.page-sidebar ul {
+  width: 185px;
+  margin-top: 2px;
+}
+.sidebar-toggler {
+  margin-left: 145px;
+}
+.header .navbar-inner {
+  background-color: #2672EC !important;
+}
+.header .nav .dropdown-toggle:hover, .header .nav .dropdown.open .dropdown-toggle {
+  background-color: #094AB2 !important;
+}
+.page-sidebar > ul > li.has-sub.open >a, .page-sidebar > ul > li >a:hover, .page-sidebar > ul > li:hover>a {
+  background: #DDD;
+}
+
+
+
+.page-sidebar > ul > li.open, .page-sidebar > ul > li.open:hover {
+  background: #FFF !important;
+}
+.page-sidebar > ul > li.has-sub.open >a, .page-sidebar > ul > li.open:hover>a {
+  background: #FFF !important;
+}
+.page-sidebar > ul > li > ul.sub-menu {
+  margin: 8px 0 0 0;
+}
+.page-sidebar > ul > li.active {
+  background-color: #FFF;
+}
+
+
+
+.page-sidebar > ul > li a i {
+  color: #333 !important;
+}
+@media (max-width: 480px) {
+
+  .header .nav > li.dropdown .dropdown-toggle {
+    margin-top: 6px !important;
+  }
+  .header .nav > li.dropdown.user .dropdown-toggle {
+    padding: 11px 4px 8px 9px;
+  }
+  .page-container {
+    background-color: #4b8df8;
+  }
+
+}
+
+@media (max-width: 979px) {
+  .header .btn-navbar {
+    padding-top: 5px;
+    margin-top: 5px;
+    min-width: 28px;
+    background-color: silver !important;
+  }
+
+}
+.header .nav > li.dropdown .dropdown-toggle .badge {
+  font-weight: 600;
+  background-color: #ED4F27 !important;
+}
+.feeds .col2 .date {
+  font-weight: 700;
+  color: #333;
+}
+.feeds li {
+  padding: 2px;
+  background-color: #EEE;
+  border: 2px solid #DDD;
+}
+.feeds li .date-color {
+  color: #777;
+}
+/*
+    Adding custom widget styles to theme for themis unique appearance & dynamic "fade-in and up" effect
+    ---------------------------------------------------------------------------------------------------
+*/
+.widget-themis {
+    position: relative;
+    top: 4px;
+    left: 4px;
+    border-left: 1px solid lightgray !important;
+    border-bottom: 1px solid lightgray !important;
+    border-right: 1px solid lightgray !important;
+}
+
+.widget-themis .portlet-body {
+    position: relative;
+    min-height: 40px;
+}
+.widget-themis .portlet-body .loading-indicator {
+    background: #FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+.widget-themis .portlet-body .loading-indicator > div {
+    width: 90%;
+    margin: 20px auto 0 auto;
+}
+
+.loaded .loading-indicator {
+    display: none;
+}
+
+.widget-themis-finish {
+
+    opacity: 1;
+    border-left: 1px solid lightgray !important;
+    border-bottom: 1px solid lightgray !important;
+    border-right: 0px solid lightgray !important;
+    box-shadow: 4px 4px 0 0 rgba(0,0,0,0.35);
+}
+
+.widget-themis-finish .portlet.box.grey, .widget-themis-finish .portlet.box.green {
+  box-shadow: 0px 0px rgba(0,0,0,0.5);
+}
+
+ul.breadcrumb {
+    box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 0px 0px !important;
+}
+
+.no-second-box-margin {
+  margin: 0 !important;
+}
+
+div.button-group {
+  margin:0;
+}
+div.button-group > button {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/*
+    Customizing login page & fixing css related bug with new login widget on mobile viewport widths
+    -----------------------------------------------------------------------------------------------
+*/
+.login {
+//  background-color: #F1F1F1;
+  background-color: #444;
+}
+.login .content input.m-wrap {
+    width:229px;
+}
+@media (max-width: 480px) {
+    .login .content {
+        width: 291px;
+    }
+}
+
+/*
+    Universally differentiate detail panes in datatables plugin
+    -----------------------------------------------------------
+*/
+td.details {
+    background: lightgray !important;
+}
+td.details .table-advance thead tr th {
+  background-color: #DDD !important;
+}
+.condensed-data-table td, .condensed-data-table th {
+  padding: 2px;
+}
+div.controls .dataTables_filter > label {
+  text-align: right;
+}
+div.controls .dataTables_filter input[type=text] {
+  width: 50% !important;
+}
+/*
+    Customize look and feel of menu
+    -------------------------------
+*/
+
+.page-sidebar > ul > li:first-child {
+  border-top: 0 !important;
+}
+
+.page-sidebar > ul > li > a {
+    font-size: 14px;
+    font-weight: 500;
+}
+.page-sidebar > ul > li.active > a, .page-sidebar > ul > li.active.open > a {
+    background: #4b8df8 !important;
+}
+.page-sidebar > ul > li > ul.sub > li.active > a, .page-sidebar > ul > li > ul.sub > li > a:hover {
+    color: #000 !important;
+}
+.page-sidebar > ul > li.active > a .selected{
+    background-image: url('/assets/img/sidebar-menu-arrow-blue.png');
+}
+
+/*
+    Fix menu for proper display with no user-picture
+    ------------------------------------------------
+*/
+div.header span.username {
+    font-size: 16px;
+}
+.header .nav > li.dropdown.user .dropdown-toggle {
+    padding: 13px 4px 8px 9px;
+}
+
+/*
+    Make footer match header
+    ------------------------
+*/
+.footer {
+    background: #434343 !important;
+}
+
+/*
+    Make sure page content has enough padding to clear the statically positioned footer
+    -----------------------------------------------------------------------------------
+*/
+.page-content {
+    padding-bottom: 40px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+
+/*
+    Make certain items flow inline within contents
+    ----------------------------------------------
+*/
+.inline-content {
+    white-space: nowrap;
+}
+.inline-content > * {
+    display: inline-block;
+}
+
+@media (max-width: 979px) {
+
+  .inline-content-responsive {
+    white-space: normal !important;
+  }
+  .inline-content-responsive > * {
+    display: block !important;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-closed .page-sidebar {
+    width: auto !important;
+  }
+
+  .sidebar-closed > .page-sidebar > ul {
+    width: auto !important;
+  }
+
+  .sidebar-closed ul > li > a .title, .sidebar-closed ul > li > a .arrow {
+    display: inline !important;
+  }
+
+  .sidebar-closed .page-sidebar > ul > li:hover {
+    width: 100% !important;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .page-sidebar.in {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+
+/*
+    Give a simple universal appearance of data that
+    is out of sync with the server
+    ----------------------------------------------
+*/
+.stale {
+    opacity: 0.5;
+}
+
+
+/*
+    Custom appearances to go with angularjs form
+    validations.
+    NOTE: These classes are applied to <form> and
+    the individual input elements
+    ----------------------------------------------
+*/
+span.field-async-checking {
+  margin-left: 10px;
+  font-size: 20px;
+  vertical-align: middle;
+  color: #555 !important;
+}
+.ng-pristine span, .ng-pristine label, .ng-pristine input, .ng-pristine textarea, .ng-pristine select {
+  color: #333333 !important;
+}
+.ng-pristine input, .ng-pristine textarea, .ng-pristine select {
+    border-color: #999999 !important;
+}
+.ng-pristine span > i, .ng-pristine .help-inline {
+    display: none !important;
+}
+
+
+
+.error .input-success i.icon-ok {
+    display: none !important;
+}
+
+.success i.icon-exclamation-sign, .success .help-inline {
+    display: none !important;
+}
+
+
+/*
+    Minor tweaks to datatables appearance
+    ----------------------------------------------
+*/
+.dataTables_wrapper {
+  position: relative;
+}
+
+.dataTables_wrapper tbody, .dataTables_wrapper thead {
+  background-color: #FFF !important;
+}
+
+.DataTables_sort_wrapper th {
+    color: #000;
+}
+.DataTables_sort_wrapper .DataTables_sort_icon {
+    display: none;
+}
+
+.dataTables_processing {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 30px;
+  margin-left: -125px;
+  margin-top: -15px;
+  padding: 14px 0 2px 0;
+  border: 2px solid #DDDDDD;
+  text-align: center;
+  color: #FFF;
+  font-size: 18px;
+  background-color: #4b8df8;
+  opacity: 0.9;
+}
+
+.dataTables_wrapper .row-fluid {
+    min-height: 0 !important;
+}
+.dataTables_wrapper .row-fluid div.span6{
+    min-height: 0 !important;
+}
+.dataTables_wrapper .dataTables_length {
+    padding-top: 5px;
+}
+div.dataTables_length select {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .dataTables_wrapper {
+    overflow-x: scroll !important;
+    width: 100% !important;
+  }
+  .dataTables_wrapper td {
+    padding: 2px;
+  }
+}
+
+/*
+  Box for info and fields, different colors for each
+  --------------------------------------------------
+*/
+.box {
+  padding: 14px 4px 14px 4px;
+  margin-bottom: 20px;
+  border: 2px solid;
+}
+
+.box.template-info-box {
+  color: #666;
+  background-color: #EEE;
+  border-color: #DDDDDD;
+}
+
+.box.revision-group-box {
+  color: #3a87ad;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+/*
+  Box for all fields in a revision
+  --------------------------------
+*/
+.revision-fields-box {
+  min-height: 10px;
+}
+
+/*
+  Fields in a revision box
+  ------------------------
+*/
+.field-box {
+  background-color: #ccc;
+  border: 2px solid #777;
+  padding: 12px 6px 12px 6px;
+  margin-bottom: 10px;
+}
+
+/*
+  Tweaking twitter bootstrap for special situations
+  -------------------------------------------------
+*/
+ul.nav .dropdown-submenu > .dropdown-menu {
+  margin-top:0 !important;
+  margin-left:0 !important;
+}
+
+.dropdown-submenu.bootstrap-menu-bar > a:after {
+  margin-right: 8px;
+}
+
+/*
+  Enabling Sub-Porlets to have different title-bar colors than their parents
+  --------------------------------------------------------------------------
+*/
+
+.portlet.box.green.sub-portlet .portlet-title {
+  background-color: #35aa47 !important;
+}
+
+.portlet.box.blue.sub-portlet .portlet-title {
+  background-color: #4b8df8 !important;
+}
+
+.portlet.box.red.sub-portlet .portlet-title {
+  background-color: #e02222 !important;
+}
+
+.color-red {
+  color: #e02222 !important;
+}
+
+.color-blue {
+  color: #4b8df8 !important;
+}
+
+.color-green {
+  color: #35aa47 !important;
+}
+
+.color-white {
+  color: #FFF !important;
+}
+
+/*
+  Customizing the appearance of the template builder form preview
+  ---------------------------------------------------------------
+*/
+
+input, textarea, select {
+  background-color: #FFF !important;
+}
+input, textarea, select {
+  color: #333 !important;
+}
+
+.template-builder-group .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #08C !important;
+}
+
+form.template-builder-form {
+
+}
+
+form.template-builder-form .portlet.box {
+  margin-bottom: 10px !important;
+}
+
+form.template-builder-form .portlet-title {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+form.template-builder-form .portlet-title .btn-group {
+  margin-bottom: 0 !important;
+}
+
+.icon-reorder {
+  cursor: move;
+}
+
+.icon-recorder-disabled {
+  cursor: not-allowed;
+}
+
+form.template-builder-form .ui-sortable-placeholder {
+  background: #4d90fe;
+  opacity: 0.8;
+  border: 2px dashed #FFF;
+  min-height: 80px;
+  margin-bottom: 10px;
+}
+
+form.template-builder-form .ui-sortable-helper {
+  opacity: 0.9;
+}
+
+div[data-ui-sortable] {
+  min-height: 40px;
+}
+
+div.controls .dataTables_wrapper .row-fluid {
+  background-color: #EEE;
+}
+
+div.controls .dataTables_filter input[type=text] {
+  width: 100%;
+}
+
+div.controls .dataTables_filter > label {
+  display: inline-block;
+  width: 100%;
+}
+
+div.controls .required {
+  color: red !important;
+}
+
+/**
+------
+*/
+.event {
+  border: 1px solid #FFF;
+}
+.pastEvent, .pastEvent > td {
+  background-color: #888 !important;
+  color: #FFF;
+}
+.upcomingEvent, .upcomingEvent > td {
+  background-color: #4b8df8 !important;
+}
+
+
+/**
+------
+*/
+ul.nav-pills .done span.number, ul.nav-pills .active span.number {
+  color: #FFF !important;
+}
+
+ul.nav-pills span.number {
+  font-weight: 700 !important;
+}
+
+/**
+-----
+*/
+.DTSelectedItemInfo {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.DTSelectedItemInfo > span {
+  margin-bottom: 4px;
+}
+
+/**
+  Details tables styles
+  ---------------------
+*/
+table.detail-table td.detail-head {
+  font-weight: 600;
+  padding-right: 10px;
+}

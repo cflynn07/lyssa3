@@ -1,0 +1,32 @@
+
+<div style="border-bottom: 2px solid #094AB2" class="navbar-inner">
+  <div class="container"><span class="pull-right"><a style="font-weight:500; color:#4d90fe;" data-ng-hide="nameEditing" data-ng-click="nameEditing = true" href="" class="brand">{{ group.name }}</a>
+      <ul data-ng-show="nameEditing" class="nav">
+        <li><a data-ng-disabled="groupNameEditingForm.$invalid" data-ng-click="nameEditing = viewModel.putGroup(group.uid)" href="">Save</a></li>
+      </ul>
+      <form name="groupNameEditingForm" data-ng-show="nameEditing" novalidate="" class="navbar-search">
+        <input type="text" name="groupName" data-ng-model="group.name" style="width:100%;" placeholder="" class="search-query span2"/>
+      </form></span>
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav">
+        <li data-ng-hide="true" style="border-right:2px solid #094AB2;"><a style="background-color:#4d90fe; color:#FFF !important;" href="#">Link</a></li>
+        <li style="background-color:#4d90fe;" class="dropdown"><a href="#" style="color:#FFF;" data-toggle="dropdown" class="dropdown-toggle">Group Options<i style="color:#FFF;" class="icon-angle-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a data-ng-click="nameEditing=true;" href=""><i class="icon-pencil"></i>Edit</a><a data-ng-click="viewModel.moveGroup('up')" href=""><i class="m-icon-swapup"></i>Move Up</a><a data-ng-click="viewModel.moveGroup('down')" href=""><i class="m-icon-swapdown"></i>Move Down</a><a data-ng-click="viewModel.deleteGroup(group.uid)" href="" class="color-red"><i class="icon-trash"></i>Archive Group</a></li>
+            <li class="dropdown-submenu bootstrap-menu-bar"><a data-ng-click="" href="">Add Question</a>
+              <ul class="dropdown-menu">
+                <li data-ng-hide="resourcePool[routeParams.templateUid].type == 'mini'"><a data-ng-click="viewModel.showAddNewField_OpenType = 'OpenResponse'">Open Response</a></li>
+                <li><a data-ng-click="viewModel.showAddNewField_OpenType = 'SelectIndividual'">Select Individual</a></li>
+                <li><a data-ng-click="viewModel.showAddNewField_OpenType = 'SelectMultiple'">Select Multiple</a></li>
+                <li><a data-ng-click="viewModel.showAddNewField_OpenType = 'YesNo'">Yes / No</a></li>
+                <li data-ng-hide="resourcePool[routeParams.templateUid].type == 'mini'"><a data-ng-click="viewModel.showAddNewField_OpenType = 'PercentageSlider'">Percentage Slider</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- /.nav-collapse-->
+  </div>
+</div>
+<!-- /navbar-inner-->

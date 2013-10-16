@@ -1,0 +1,51 @@
+
+<div class="navbar-inner">
+  <div style="padding-left: 0;" class="container-fluid">
+    <!-- BEGIN LOGO-->
+    <div style="margin-top:0;" class="btn-group pull-left"><a href="#/{{clientConfig.simplifiedUserCategories[rootUser.type]}}/themis" style="min-height:23px; min-width:161px !important; background-color:#2672EC; color:#FFF !important; min-width:141px; padding-top:12px; font-size:16px; padding-left:0; padding-right:0;" class="btn detail header-product-button">Themis</a>
+      <button style="min-height: 42px; background-color: #094AB2;" data-toggle="dropdown" class="btn dropdown-toggle"><span style="border-top: 4px solid #FFF;" class="caret"></span></button>
+      <ul style="min-width: 158px !important;" class="dropdown-menu">
+        <!-- dropdown menu links-->
+        <li><a data-ng-click=""><i class="icon-trash"></i>Product A</a><a data-ng-click=""><i class="icon-trash"></i>Product B</a><a data-ng-click=""><i class="icon-trash"></i>Product C</a></li>
+      </ul>
+    </div>
+    <!-- END LOGO-->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER--><a data-ng-click="toggleTopBarOpen()" data-action="expand-main-menu" class="btn-navbar collapsed"><img src="assets/img/menu-toggler.png" alt=""/></a>
+    <!-- END RESPONSIVE MENU TOGGLER-->
+    <!-- BEGIN TOP NAVIGATION MENU-->
+    <ul class="nav pull-right">
+      <!-- BEGIN NOTIFICATION DROPDOWN-->
+      <!-- END NOTIFICATION DROPDOWN-->
+      <!-- BEGIN INBOX DROPDOWN-->
+      <li data-ng-show="rootEmployee &amp;&amp; rootUser" class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i style="color: #FFF !important;" class="icon-tasks"></i><span data-ng-show="(rootActivityFeed | toArray | filter:{readState:'false'}).length" class="badge">{{ (rootActivityFeed | toArray | filter:{readState:'false'}).length }}</span></a>
+        <ul class="dropdown-menu extended inbox">
+          <li>
+            <p>You have 12 new messages</p>
+          </li>
+          <li><a href="#"><span class="photo"><img src="./assets/img/avatar2.jpg" alt=""/></span><span class="subject"><span class="from">Lisa Wong</span><span class="time">Just Now</span></span><span class="message">
+                Vivamus sed auctor nibh congue nibh. auctor nibh
+                auctor nibh...</span></a></li>
+          <li><a href="#"><span class="photo"><img src="./assets/img/avatar3.jpg" alt=""/></span><span class="subject"><span class="from">Richard Doe</span><span class="time">16 mins</span></span><span class="message">
+                Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+                auctor nibh...</span></a></li>
+          <li><a href="#"><span class="photo"><img src="./assets/img/avatar1.jpg" alt=""/></span><span class="subject"><span class="from">Bob Nilson</span><span class="time">2 hrs</span></span><span class="message">
+                Vivamus sed nibh auctor nibh congue nibh. auctor nibh
+                auctor nibh...</span></a></li>
+          <li class="external"><a href="#">See all messages<i class="m-icon-swapright"></i></a></li>
+        </ul>
+      </li>
+      <!-- END INBOX DROPDOWN-->
+      <!-- BEGIN USER LOGIN DROPDOWN-->
+      <li data-ng-show="rootEmployee &amp;&amp; rootUser" style="min-height: 42px;" class="dropdown user"><a data-action="toggle-user-menu" data-toggle="dropdown" class="dropdown-toggle"><span style="color: #FFF !important;" class="username">{{rootEmployee.firstName}} {{rootEmployee.lastName}}</span><i style="color: #FFF !important;" class="icon-angle-down"></i></a>
+        <ul class="dropdown-menu slide down">
+          <li><a href="#/profile"><i class="icon-user"></i>&nbsp;My Profile</a></li>
+          <li><a href="#"><i class="icon-calendar"></i>&nbsp;My Calendar</a></li>
+          <li class="divider"></li>
+          <li><a data-ng-click="logout()"><i class="icon-key"></i>&nbsp;Log Out</a></li>
+        </ul>
+      </li>
+      <!-- END USER LOGIN DROPDOWN-->
+    </ul>
+    <!-- END TOP NAVIGATION MENU-->
+  </div>
+</div>

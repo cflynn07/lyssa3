@@ -1,0 +1,18 @@
+div(data-ng-form="", name="subForm")
+  .span6.m-wrap(data-ng-controller="ControllerWidgetQuizExerciseSubmitter_SelectIndividualHelper")
+    p.DTSelectedItemInfo(data-ng-show="viewModel.exerciseQuizForm[field.uid]")
+      span
+        span.input-success.color-green
+          i.icon-ok
+        | {{resourcePool[viewModel.exerciseQuizForm[field.uid]].name}}
+      br
+      a.btn.red.mini(data-ng-click="viewModel.exerciseQuizForm[field.uid] = false;") Cancel Selection
+    input(type="text", required="", data-ng-show="false", data-ng-init="viewModel.fields[field.uid] = subForm", data-ng-model="viewModel.exerciseQuizForm[field.uid]", name="subField")
+    div(data-ng-hide="viewModel.exerciseQuizForm[field.uid]")
+      table.table.table-striped.table-hover.table-bordered.dataTable.condensed-data-table(data-data-table="selectIndividualTable.options", ao-column-defs="selectIndividualTable.columnDefs", update-on-resource-post="dictionaryItem")
+        thead
+          tr
+            th.sorting Option
+            th
+  // data-ng-controller
+// data-ng-form

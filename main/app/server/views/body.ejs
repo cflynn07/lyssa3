@@ -1,0 +1,65 @@
+<body data-ng-class = "{true: 'login', false:'fixed-top'}[rootStatus == 'loading' || rootStatus == 'login']"
+      class         = "login">
+
+
+
+  <div data-ng-switch = "rootStatus">
+    <div data-ng-switch-when = "loading">
+
+      <div class = "logo"></div>
+
+      <div class = "content portlet box blue widget-themis-finish">
+
+        <div class = "portlet-title">
+          <h4 style = "color:#FFF;">
+            <i class = "icon-plus"></i>Themis v0.1
+          </h4>
+        </div><!-- .portlet-title -->
+
+        <div class = "portlet-body">
+
+
+          <div class = "progress progress-striped active">
+            <div id    = "pre_loading_bar" 
+                 style = "width: 100%;" 
+                 class = "bar"></div>
+          </div><!-- .progress -->
+
+
+          <h4>
+            <i data-ng-show = "loadingStatusIcon != 'icon-lock'"
+               style        = "color: {{ loadingStatusColor }}"
+               class        = "icon-cog icon-spin"></i>
+
+            <i data-ng-show = "loadingStatusIcon == 'icon-lock'"
+               style        = "display:none; color: {{ loadingStatusColor }}"
+               class        = "icon-lock"></i>
+               
+            &nbsp;<span data-ng-bind-template = "{{ loadingStatus }}">Loading...</span>
+          </h4>
+          
+
+        </div><!-- .portlet-body -->
+      </div><!-- .content -->
+
+
+    </div><!-- data-ng-switch-when="loading" -->
+
+    <div data-ng-switch-when = "login"
+         data-ng-include     = "'viewWidgetCoreLogin'"></div><!-- data-ng-switch-when="login" -->
+
+    <div data-ng-switch-when = "authenticated"
+         data-ng-include     = "'viewCore'"></div><!-- data-ng-switch-when="authenticated" -->
+
+  </div><!-- data-ng-switch -->
+
+
+
+    <!-- Determines if we load compiled/compressed resources or standard development -->
+    <% if(assetHash == 'client'){ %>
+      <script async type="text/javascript" data-main="/client" src="vendor/require.js"></script>
+    <% }else{ %>
+      <script async type="text/javascript" src="/assets/<%= assetHash %>.js"></script>
+    <% } %>
+
+</body>

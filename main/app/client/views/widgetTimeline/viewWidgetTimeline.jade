@@ -1,0 +1,24 @@
+.widget-themis-finish.portlet.box.blue(data-animate-in
+                                       data-ng-controller = "ControllerWidgetTimeline"
+                                       style              = "margin-bottom:0;")
+  .portlet-title
+    h4
+      span Timeline
+  .portlet-body(style = "padding:0;")
+
+    table.table.table-striped.table-hover.table-bordered.dataTable(data-data-table                        = "viewModel.eventListDT.options"
+                                                                   data-ao-column-defs                    = "viewModel.eventListDT.columnDefs"
+                                                                   data-parent-model                      = "viewModel.eventListDT"
+                                                                   data-parent-data-table-view-model-prop = "eventListDT"
+                                                                   data-update-on-resource-post           = "event"
+                                                                   data-update-on-resource-put            = "event"
+                                                                   data-aa-sorting                        = "[[0, 'desc']]"
+                                                                   data-fn-row-callback                   = "viewModel.eventListDT.fnRowCallback")
+      thead
+        tr
+          th.sorting Date
+          th.sorting Name
+          th.sorting-disabled Employees
+          th.sorting-disabled Viewed
+          th.sorting-disabled Completed
+          th.sorting-disabled

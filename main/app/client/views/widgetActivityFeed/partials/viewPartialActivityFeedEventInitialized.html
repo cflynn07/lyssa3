@@ -1,0 +1,17 @@
+
+<div class="col1">
+  <div class="cont">
+    <div class="cont-col1">
+      <div class="label label-success"><i class="icon-calendar"></i></div>
+    </div>
+    <div class="cont-col2">
+      <div class="desc">
+        <h4 style="margin:0;">Exercise "{{ resourcePool[value.event.uid].name }}" began</h4><span class="date-color">{{ resourcePool[value.uid].createdAt | fromNow }}</span>
+        <div style="margin-top:5px;"><a href="#/admin/themis/schedule/{{ value.eventUid }}" class="color-blue">{{ resourcePool[value.eventUid].name }}</a>began at {{ resourcePool[value.eventUid].dateTime | date:'short' }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col2">
+  <div class="date">{{ resourcePool[value.uid].createdAt | date:'short' }}</div>
+</div>

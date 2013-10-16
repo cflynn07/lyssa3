@@ -1,0 +1,110 @@
+.navbar-inner
+  .container-fluid(style = "padding-left: 0;")
+    // BEGIN LOGO
+    .btn-group.pull-left(style = "margin-top:0;")
+      a.btn.detail.header-product-button(href  = "#/{{clientConfig.simplifiedUserCategories[rootUser.type]}}/themis"
+                                         style = "min-height:23px; min-width:161px !important; background-color:#2672EC; color:#FFF !important; min-width:141px; padding-top:12px; font-size:16px; padding-left:0; padding-right:0;")
+        | Themis
+      button.btn.dropdown-toggle(style       = "min-height: 42px; background-color: #094AB2;"
+                                 data-toggle = "dropdown")
+        span.caret(style = "border-top: 4px solid #FFF;")
+      ul.dropdown-menu(style = "min-width: 158px !important;")
+        // dropdown menu links
+        li
+          a(data-ng-click = "")
+            i.icon-trash
+            | Product A
+          a(data-ng-click = "")
+            i.icon-trash
+            | Product B
+          a(data-ng-click = "")
+            i.icon-trash
+            | Product C
+    // END LOGO
+    // BEGIN RESPONSIVE MENU TOGGLER
+    a.btn-navbar.collapsed(data-ng-click = "toggleTopBarOpen()"
+                           data-action   = "expand-main-menu")
+      img(src = "assets/img/menu-toggler.png"
+          alt = "")
+
+    // END RESPONSIVE MENU TOGGLER
+    // BEGIN TOP NAVIGATION MENU
+
+    ul.nav.pull-right
+
+      // BEGIN NOTIFICATION DROPDOWN
+      // END NOTIFICATION DROPDOWN
+      // BEGIN INBOX DROPDOWN
+
+      li.dropdown(data-ng-show = "rootEmployee && rootUser")
+        a.dropdown-toggle(href        = "#"
+                          data-toggle = "dropdown")
+          i.icon-tasks(style = "color: #FFF !important;")
+          span.badge(data-ng-show = "(rootActivityFeed | toArray | filter:{readState:'false'}).length") {{ (rootActivityFeed | toArray | filter:{readState:'false'}).length }}
+        ul.dropdown-menu.extended.inbox
+          li
+            p You have 12 new messages
+          li
+            a(href = "#")
+              span.photo
+                img(src = "./assets/img/avatar2.jpg", alt = "")
+              span.subject
+                span.from Lisa Wong
+                span.time Just Now
+              span.message
+                | Vivamus sed auctor nibh congue nibh. auctor nibh
+                | auctor nibh...
+          li
+            a(href = "#")
+              span.photo
+                img(src = "./assets/img/avatar3.jpg", alt = "")
+              span.subject
+                span.from Richard Doe
+                span.time 16 mins
+              span.message
+                | Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+                | auctor nibh...
+          li
+            a(href = "#")
+              span.photo
+                img(src = "./assets/img/avatar1.jpg", alt = "")
+              span.subject
+                span.from Bob Nilson
+                span.time 2 hrs
+              span.message
+                | Vivamus sed nibh auctor nibh congue nibh. auctor nibh
+                | auctor nibh...
+          li.external
+            a(href = "#")
+              | See all messages
+              i.m-icon-swapright
+
+
+      // END INBOX DROPDOWN
+      // BEGIN USER LOGIN DROPDOWN
+
+
+      li.dropdown.user(data-ng-show = "rootEmployee && rootUser"
+                              style = "min-height: 42px;")
+        a.dropdown-toggle(data-action = "toggle-user-menu"
+                          data-toggle = "dropdown")
+          span.username(style = "color: #FFF !important;") {{rootEmployee.firstName}} {{rootEmployee.lastName}}
+          i.icon-angle-down(style = "color: #FFF !important;")
+        ul.dropdown-menu.slide.down
+          li
+            a(href = "#/profile")
+              i.icon-user
+              |&nbsp;My Profile
+          li
+            a(href = "#")
+              i.icon-calendar
+              |&nbsp;My Calendar
+          li.divider
+          li
+            a(data-ng-click = "logout()")
+              i.icon-key
+              |&nbsp;Log Out
+
+
+      // END USER LOGIN DROPDOWN
+    // END TOP NAVIGATION MENU

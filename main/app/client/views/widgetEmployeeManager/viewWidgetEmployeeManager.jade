@@ -1,0 +1,281 @@
+div(data-ng-controller = "ControllerWidgetEmployeeManager")
+
+
+  div(data-ng-show = "viewModel.routeParams.employeeUid")
+    .row-fluid
+      .span3(style = "padding-bottom:10px;")      
+        .span6
+          a.btn.blue(href = "{{ '#' + viewRoot }}")
+            i.icon-arrow-left.m-icon-white
+            |&nbsp;Employees
+
+    .row-fluid
+      .span12(style = "margin:0;")
+        .portlet.box.grey(data-animate-in)
+          .portlet-title
+            h4
+              span Edit Employee: {{ resourcePool[viewModel.routeParams.employeeUid].firstName + ' ' + resourcePool[viewModel.routeParams.employeeUid].lastName }}
+          .portlet-body.form
+            form.horizontal-form(name = "editEmployeeForm"
+                                 novalidate)
+              .row-fluid
+                .span6
+                  .control-group(data-ng-class = "{success:editEmployeeForm.firstName.$valid, error:!editEmployeeForm.firstName.$valid, 'ng-pristine':editEmployeeForm.firstName.$pristine}")
+                    label.control-label(for = "firstName") First Name
+                    .controls.input-icon
+                      input.m-wrap.span10(data-required
+                                          type              = "text"                                          
+                                          data-ng-disabled  = "updateInProgress"
+                                          data-ng-model     = "viewModel.editEmployeeForm.firstName"
+                                          data-ng-minlength = "{{clientOrmShare.employee.model.firstName.validate.len[0]}}"
+                                          data-ng-maxlength = "{{clientOrmShare.employee.model.firstName.validate.len[1]}}"
+                                          name              = "firstName"
+                                          placeholder       = "Jane")
+                      span.input-success(data-ng-show = "editEmployeeForm.firstName.$dirty && editEmployeeForm.firstName.$valid")
+                        i.icon-ok
+                      span.input-error(data-ng-show = "editEmployeeForm.firstName.$dirty && editEmployeeForm.firstName.$invalid")
+                        i.icon-exclamation-sign
+                      span.help-inline(data-ng-show = "editEmployeeForm.firstName.$error.minlength")
+                        | First name must be longer than {{clientOrmShare.employee.model.firstName.validate.len[0]}} characters
+                      span.help-inline(data-ng-show = "editEmployeeForm.firstName.$error.maxlength")
+                        | First name must be shorter than {{clientOrmShare.employee.model.firstName.validate.len[1]}} characters
+                .span6
+                  .control-group(data-ng-class = "{success:editEmployeeForm.lastName.$valid, error:!editEmployeeForm.lastName.$valid, 'ng-pristine':editEmployeeForm.lastName.$pristine}")
+                    label.control-label(for = "lastName") Last Name
+                    .controls.input-icon
+                      input.m-wrap.span10(data-required
+                                          type              = "text"
+                                          data-ng-disabled  = "updateInProgress"
+                                          data-ng-model     = "viewModel.editEmployeeForm.lastName"
+                                          data-ng-minlength = "{{clientOrmShare.employee.model.lastName.validate.len[0]}}"
+                                          data-ng-maxlength = "{{clientOrmShare.employee.model.lastName.validate.len[1]}}"
+                                          name              = "lastName"
+                                          placeholder       = "Doe")
+                      span.input-success(data-ng-show = "editEmployeeForm.lastName.$dirty && editEmployeeForm.lastName.$valid")
+                        i.icon-ok
+                      span.input-error(data-ng-show = "editEmployeeForm.lastName.$dirty && editEmployeeForm.lastName.$invalid")
+                        i.icon-exclamation-sign
+                      span.help-inline(data-ng-show = "editEmployeeForm.lastName.$error.minlength")
+                        | Last name must be longer than {{clientOrmShare.employee.model.lastName.validate.len[0]}} characters
+                      span.help-inline(data-ng-show = "editEmployeeForm.lastName.$error.maxlength")
+                        | Last name must be shorter than {{clientOrmShare.employee.model.lastName.validate.len[1]}} characters
+
+              .row-fluid
+                .span6
+                  .control-group(data-ng-class = "{success:editEmployeeForm.email.$valid, error:!editEmployeeForm.email.$valid, 'ng-pristine':editEmployeeForm.email.$pristine}")
+                    label.control-label(for="email") Email
+                    .controls.input-icon
+                      input.m-wrap.span10(data-required
+                                          type              = "email"
+                                          data-ng-disabled  = "updateInProgress"
+                                          data-ng-model     = "viewModel.editEmployeeForm.email"
+                                          data-unique-field = "{\"resource\": \"employee\", \"property\": \"email\"}"
+                                          name              = "email"
+                                          placeholder       = "jane@company.com")
+                      span.input-success(data-ng-show = "editEmployeeForm.email.$dirty && editEmployeeForm.email.$valid")
+                        i.icon-ok
+                      span.input-error(data-ng-show = "editEmployeeForm.email.$dirty && editEmployeeForm.email.$invalid")
+                        i.icon-exclamation-sign
+                      span.help-inline(data-ng-show = "editEmployeeForm.email.$error.email") Enter a valid email address
+                      span.help-inline(data-ng-show = "editEmployeeForm.email.$error.uniqueField")
+                        | Another employee with the email address
+                        strong {{ viewModel.editEmployeeForm.email }}
+                        | already exists
+                .span6
+                  .control-group(data-ng-class="{success:editEmployeeForm.phone.$valid, error:!editEmployeeForm.phone.$valid, 'ng-pristine':editEmployeeForm.phone.$pristine}")
+                    label.control-label(for="phone") Phone Number
+                    .controls.input-icon
+                      input.m-wrap.span10(data-required
+                                          type              = "text"
+                                          data-ng-disabled  = "updateInProgress"
+                                          data-unique-field = "{\"resource\": \"employee\", \"property\": \"phone\"}"
+                                          data-ui-mask      = "'999-999-9999'"
+                                          data-ng-model     = "viewModel.editEmployeeForm.phone"
+                                          name              = "phone"
+                                          placeholder       = "999-999-9999")
+                      span.input-success(data-ng-show = "editEmployeeForm.phone.$dirty && editEmployeeForm.phone.$valid")
+                        i.icon-ok
+                      span.input-error(data-ng-show = "editEmployeeForm.phone.$dirty && editEmployeeForm.phone.$invalid")
+                        i.icon-exclamation-sign
+                      span.help-inline(data-ng-show = "editEmployeeForm.phone.$error") Enter a valid phone number
+                      span.help-inline(data-ng-show = "editEmployeeForm.phone.$error.uniqueField")
+                        | Another employee with the phone number
+                        strong {{viewModel.editEmployeeForm.phone}}
+                        | already exists
+
+              .row-fluid(style="display:none;")
+                .span6
+                  .control-group
+                    label.control-label(for="delegate") Delegate
+                    .controls
+                      .controls
+                        label.checkbox.line
+                          .checker
+                            span(data-ng-class = "{checked: viewModel.editEmployeeForm.delegate}"
+                                 data-ng-click = "viewModel.editEmployeeForm.delegate = !viewModel.editEmployeeForm.delegate")
+                              input(type          = "checkbox"
+                                    data-ng-model = "viewModel.editEmployeeForm.delegate"
+                                    name          = "delegate")
+                          | This employee is a delegate
+                        span.help-inline This will create an account for your delegate to log-in and submit exercises
+
+              .form-actions
+                //
+                  button.btn.green.pull-right(data-ng-disabled = "editEmployeeForm.$invalid || viewModel.editEmployeeFormSubmitting"
+                                              data-ng-click    = "viewModel.updateEmployee()"
+                                              type             = "submit")
+                    i.icon-pencil.m-icon-white
+
+                    span(style        = "color:#FFF !important;"
+                         data-ng-show = "!viewModel.editEmployeeFormSubmitting") Update Employee
+
+                    span(style        = "color:#FFF !important;"
+                         data-ng-show = "viewModel.editEmployeeFormSubmitting") Saving...
+
+
+                button.btn.green.pull-right(data-ng-class    = "{true:'black',false:'green'}[!!viewModel.editEmployeeFormSubmitting]"
+                                            type             = "submit"
+                                            data-ng-disabled = "editEmployeeForm.$invalid || !!viewModel.editEmployeeFormSubmitting"
+                                            data-ng-click    = "viewModel.updateEmployee()")
+                  p(data-ng-hide = "!!viewModel.editEmployeeFormSubmitting"
+                    style        = "margin-bottom:0px;")
+                    |&nbsp;Update
+                  p(data-ng-show = "!!viewModel.editEmployeeFormSubmitting"
+                    style        = "margin-bottom:0px;")
+                    i.icon-cog.icon-spin
+                    |&nbsp;Saving...
+
+    
+
+
+
+
+  div(data-ng-show = "!viewModel.routeParams.employeeUid")
+
+    .row-fluid(style = "margin-bottom:10px;")
+      .span3
+        .span6
+          button.btn.green.btn-block(data-ng-hide    = "viewModel.showAddNewEmployee"
+                                     data-ng-animate = "{show: 'fadeIn', hide: 'fadeOut'}"
+                                     data-ng-click   = "viewModel.showAddNewEmployee = true")
+            i.icon-plus.m-icon-white
+            |&nbsp;New Employee
+        .span6(data-ng-init = "activeViewType = 'employees'")
+          button.btn.blue.btn-block(data-ng-show  = "activeViewType == 'employees'"
+                                    data-ng-click = "activeViewType = 'organization'")
+            i.icon-sitemap
+            |&nbsp;Organization
+          button.btn.blue.btn-block(data-ng-show  = "activeViewType == 'organization'"
+                                    data-ng-click = "activeViewType = 'employees'"
+                                    style         = "margin-top:0;")
+            i.icon-list
+            |&nbsp;Employees
+
+
+
+
+
+
+
+
+    .row-fluid
+      .span12(style           = "display:none;"
+              data-ng-animate = "{show:'slideDown'}"
+              data-ng-show    = "viewModel.showAddNewEmployee")
+        .portlet.box.grey
+          .portlet-title
+            h4
+              span Add Employees
+            .actions
+              a.btn.red(data-ng-click = "viewModel.showAddNewEmployeeClose()")
+                i.icon-remove
+                | Cancel
+
+          .portlet-body.light-grey.form
+
+            div(data-ng-show = "viewModel.addNewEmployeeMode === false")
+
+              h4 
+                | Hey {{ rootEmployee.firstName }}, do you want to add an individual employee by filling out a form, or 
+                | do you want to upload a CSV file of employees?
+              hr
+
+              p(style = "width:100%;text-align:center;")
+
+                a.btn.blue.big.span3.pull-right(style         = "min-height:55px; margin-left:5px;"
+                                                data-ng-click = "viewModel.addNewEmployeeMode = 'csv'")
+                  i.icon-file.m-icon-white
+                  |&nbsp;CSV Upload
+                a.btn.green.big.span3.pull-right(style         = "min-height:55px;"
+                                                 data-ng-click = "viewModel.addNewEmployeeMode = 'manual'")
+                  i.icon-plus.m-icon-white
+                  |&nbsp;Add Manually
+
+              .clearfix
+
+            div(data-ng-switch = "viewModel.addNewEmployeeMode")
+
+              div(data-ng-include     = "'viewPartialEmployeeManagerAddManualForm'"
+                  data-ng-switch-when = "manual")
+
+              div(data-ng-include     = "'viewPartialEmployeeManagerAddCSVForm'"
+                  data-ng-switch-when = "csv")
+
+
+
+
+
+
+
+
+
+    .row-fluid(data-ng-show = "activeViewType == 'organization'")
+      .portlet.box.grey(data-animate-in)
+        .portlet-title
+          h4
+            span Organization Structure
+        .portlet-body
+          div(data-space-tree
+              style           = "height:400px; background-image:url('/assets/img/tiny_grid.png');"
+              data-values     = "")        
+
+
+
+    .row-fluid(data-ng-show = "activeViewType == 'employees'")
+      .portlet.box.grey(data-animate-in)
+        .portlet-title
+          h4
+            span Employees ({{ viewModel.employeesListLength }})
+        .portlet-body
+          .row-fluid(data-ng-animate = "{show: 'fadeIn'}"
+                     data-ng-hide    = "viewModel.showAddNewEmployee")
+            //
+              .span6
+                |&nbsp;
+              .span6
+                button.btn.green.btn-block(style         = "margin-bottom: 5px;"
+                                           data-ng-click = "viewModel.showAddNewEmployeeOpen()")
+                  | Add Employees
+                  i.m-icon-swapright.m-icon-white
+
+
+
+          table.table.table-striped.table-hover.table-bordered.dataTable(data-data-table                        = "viewModel.employeeListDT.options"
+                                                                         ao-column-defs                         = "viewModel.employeeListDT.columnDefs"
+                                                                         data-parent-model                      = "viewModel.employeeListDT"
+                                                                         aa-data                                = "viewModel.employees"
+                                                                         data-parent-data-table-view-model-prop = "employeeListDT"
+                                                                         update-on-resource-post                = "employee"
+                                                                         fn-row-callback)
+            thead
+              tr
+                th.sorting First Name
+                th.sorting Last Name
+                th.sorting Email
+                th.sorting Phone Number
+                th.sorting_disabled Type
+                th.sorting_disabled {{ rootClient.businessDivision0Name }}
+                th.sorting_disabled {{ rootClient.businessDivision1Name }}
+                th.sorting_disabled {{ rootClient.businessDivision2Name }}
+                th.sorting_disabled
+

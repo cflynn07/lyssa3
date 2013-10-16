@@ -1,0 +1,16 @@
+.inline-content.inline-content-responsive(style = "text-align:center;")
+  .btn-group(style = "margin-bottom:0px !important; text-align:left;")
+
+    a.btn.green(href != "{{ '#' + viewRoot + '/' }}<%= uid %>")
+      | Edit&nbsp;
+      i.m-icon-swapright.m-icon-white
+
+    button.btn.dropdown-toggle(data-toggle = "dropdown")
+      span.caret
+
+    ul.dropdown-menu.pull-right   
+      li
+        a(data-ng-click != "$parent.viewModel.deleteConfirmDialogEmployee('<%= uid %>')"
+          style          = "color:red;")
+          i.icon-trash
+          |&nbsp;Archive

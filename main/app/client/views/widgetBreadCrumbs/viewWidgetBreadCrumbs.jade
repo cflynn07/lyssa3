@@ -1,0 +1,12 @@
+.span12(data-ng-controller = "ControllerWidgetBreadCrumbs")
+  // BEGIN PAGE TITLE & BREADCRUMB
+  h3.page-title
+    | {{ title }}&nbsp;
+    small {{subtitle}} {{''}}
+  ul.breadcrumb.widget-themis-finish
+    li
+      i.icon-home
+      a(href = "#") Dashboard
+      i.icon-angle-right
+    li
+      a(href = "#") {{title}}

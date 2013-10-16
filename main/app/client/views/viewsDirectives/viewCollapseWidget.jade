@@ -1,0 +1,10 @@
+.portlet.box.{{color}}(data-ng-class="{'true': 'widget-themis-finish'}[widgetThemis]")
+  .portlet-title
+    h4
+      span {{title}}
+    .actions
+      a#tree_1_collapse.btn.green(data-ng-show="false", href="javascript:;") New
+    .tools(data-ng-hide="true")
+      a(href="", data-ng-click="toggle()", data-ng-class="{true: 'expand', false: 'collapse'}[collapsed]")
+      a.reload(href="", data-ng-click="reload()")
+  .portlet-body.light-grey(data-ng-class="{true: 'hidden', false: ''}[collapsed]", data-ng-transclude="")

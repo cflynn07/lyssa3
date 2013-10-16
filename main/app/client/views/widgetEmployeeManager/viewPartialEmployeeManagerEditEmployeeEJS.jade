@@ -1,0 +1,102 @@
+.portlet.box.grey
+  .portlet-title
+    h4
+      span Edit Employee Info
+  .portlet-body.light-grey.form
+    form.horizontal-form(name="editEmployeeForm", novalidate="")
+      .row-fluid
+        .span6
+          .control-group(data-ng-class="{success:editEmployeeForm.firstName.$valid, error:!editEmployeeForm.firstName.$valid, 'ng-pristine':editEmployeeForm.firstName.$pristine}")
+            label.control-label(for="firstName") First Name
+            .controls.input-icon
+              input.m-wrap.span10(type="text", data-ng-disabled="updateInProgress", data-required="", data-ng-model="subViewModel.editEmployeeForm.firstName", data-ng-minlength="{{clientOrmShare.employee.model.firstName.validate.len[0]}}", data-ng-maxlength="{{clientOrmShare.employee.model.firstName.validate.len[1]}}", name="firstName", placeholder="Jane")
+              span.input-success(data-ng-show="editEmployeeForm.firstName.$dirty && editEmployeeForm.firstName.$valid")
+                i.icon-ok
+              span.input-error(data-ng-show="editEmployeeForm.firstName.$dirty && editEmployeeForm.firstName.$invalid")
+                i.icon-exclamation-sign
+              span.help-inline(data-ng-show="editEmployeeForm.firstName.$error.minlength")
+                | First name must be longer than {{clientOrmShare.employee.model.firstName.validate.len[0]}} characters
+              span.help-inline(data-ng-show="editEmployeeForm.firstName.$error.maxlength")
+                | First name must be shorter than {{clientOrmShare.employee.model.firstName.validate.len[1]}} characters
+        .span6
+          .control-group(data-ng-class="{success:editEmployeeForm.lastName.$valid, error:!editEmployeeForm.lastName.$valid, 'ng-pristine':editEmployeeForm.lastName.$pristine}")
+            label.control-label(for="lastName") Last Name
+            .controls.input-icon
+              input.m-wrap.span10(type="text", data-ng-disabled="updateInProgress", data-required="", data-ng-model="subViewModel.editEmployeeForm.lastName", data-ng-minlength="{{clientOrmShare.employee.model.lastName.validate.len[0]}}", data-ng-maxlength="{{clientOrmShare.employee.model.lastName.validate.len[1]}}", name="lastName", placeholder="Doe")
+              span.input-success(data-ng-show="editEmployeeForm.lastName.$dirty && editEmployeeForm.lastName.$valid")
+                i.icon-ok
+              span.input-error(data-ng-show="editEmployeeForm.lastName.$dirty && editEmployeeForm.lastName.$invalid")
+                i.icon-exclamation-sign
+              span.help-inline(data-ng-show="editEmployeeForm.lastName.$error.minlength")
+                | Last name must be longer than {{clientOrmShare.employee.model.lastName.validate.len[0]}} characters
+              span.help-inline(data-ng-show="editEmployeeForm.lastName.$error.maxlength")
+                | Last name must be shorter than {{clientOrmShare.employee.model.lastName.validate.len[1]}} characters
+      // row-fluid
+      .row-fluid
+        .span6
+          .control-group(data-ng-class="{success:editEmployeeForm.email.$valid, error:!editEmployeeForm.email.$valid, 'ng-pristine':editEmployeeForm.email.$pristine}")
+            label.control-label(for="email") Email
+            .controls.input-icon
+              input.m-wrap.span10(type="email", data-ng-disabled="updateInProgress", data-required="", data-ng-model="subViewModel.editEmployeeForm.email", data-unique-field="{\"resource\": \"employee\", \"property\": \"email\"}", name="email", placeholder="jane@company.com")
+              span.input-success(data-ng-show="editEmployeeForm.email.$dirty && editEmployeeForm.email.$valid")
+                i.icon-ok
+              span.input-error(data-ng-show="editEmployeeForm.email.$dirty && editEmployeeForm.email.$invalid")
+                i.icon-exclamation-sign
+              span.help-inline(data-ng-show="editEmployeeForm.email.$error.email") Enter a valid email address
+              span.help-inline(data-ng-show="editEmployeeForm.email.$error.uniqueField")
+                | Another employee with the email address
+                strong {{subViewModel.editEmployeeForm.email}}
+                | already exists
+        .span6
+          .control-group(data-ng-class="{success:editEmployeeForm.phone.$valid, error:!editEmployeeForm.phone.$valid, 'ng-pristine':editEmployeeForm.phone.$pristine}")
+            label.control-label(for="phone") Phone Number
+            .controls.input-icon
+              input.m-wrap.span10(type = "text"
+                                  data-required
+                                  data-ng-disabled  = "updateInProgress"
+                                  data-unique-field = "{\"resource\": \"employee\", \"property\": \"phone\"}"
+                                  data-ui-mask      = "'999-999-9999'"
+                                  data-ng-model     = "subViewModel.editEmployeeForm.phone"
+                                  name              = "phone"
+                                  placeholder       = "999-999-9999")
+              span.input-success(data-ng-show = "editEmployeeForm.phone.$dirty && editEmployeeForm.phone.$valid")
+                i.icon-ok
+              span.input-error(data-ng-show = "editEmployeeForm.phone.$dirty && editEmployeeForm.phone.$invalid")
+                i.icon-exclamation-sign
+              span.help-inline(data-ng-show = "editEmployeeForm.phone.$error") Enter a valid phone number
+              span.help-inline(data-ng-show = "editEmployeeForm.phone.$error.uniqueField")
+                | Another employee with the phone number
+                strong {{subViewModel.editEmployeeForm.phone}}
+                | already exists
+      // row-fluid
+      .row-fluid(style="display:none;")
+        .span6
+          .control-group
+            label.control-label(for="delegate") Delegate
+            .controls
+              .controls
+                label.checkbox.line
+                  .checker
+                    span(data-ng-class = "{checked: subViewModel.editEmployeeForm.delegate}"
+                         data-ng-click = "subViewModel.editEmployeeForm.delegate = !subViewModel.editEmployeeForm.delegate")
+                      input(type="checkbox", data-ng-model="subViewModel.editEmployeeForm.delegate", name="delegate")
+                  | This employee is a delegate
+                span.help-inline This will create an account for your delegate to log-in and submit exercises
+      // row-fluid
+      .form-actions
+        button.btn.green.pull-right(data-ng-disabled = "editEmployeeForm.$invalid || updateInProgress || dataIsSynced"
+                                    data-ng-click    = "subViewModel.updateEmployee()"
+                                    type             = "submit")
+          i.icon-pencil.m-icon-white
+
+          span(style        = "color:#FFF !important;"
+               data-ng-show = "dataIsSynced") Update Employee
+
+          span(style        = "color:#FFF !important;"
+               data-ng-hide = "!dataIsSynced") Update Employee
+
+          span(style        = "color:#FFF !important;"
+               data-ng-show = "dataIsSynced && updateActionComplete") Update Complete
+
+  // portlet-body
+// portlet-box

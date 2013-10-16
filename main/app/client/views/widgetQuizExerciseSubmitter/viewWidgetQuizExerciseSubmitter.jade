@@ -1,0 +1,70 @@
+.widget-themis-finish.portlet.box.blue(data-animate-in    = ""
+                                       data-ng-controller = "ControllerWidgetQuizExerciseSubmitter")
+  .portlet-title
+    h4
+      span Mini Exercise
+  // portlet-title
+  .portlet-body.form
+    .box.template-info-box.fade.in
+      table.detail-table
+        tbody
+          tr
+            td.detail-head Exercise Name:
+            td {{ resourcePool[viewModel.routeParams.eventParticipantUid].event.name }}
+          tr
+            td.detail-head Start Date/Time:
+            td
+              | {{ resourcePool[viewModel.routeParams.eventParticipantUid].event.dateTime | date:'short' }}
+              | ({{ resourcePool[viewModel.routeParams.eventParticipantUid].event.dateTime | fromNow }})
+          tr
+            td.detail-head Scheduled By:
+            td
+              | {{ resourcePool[resourcePool[viewModel.routeParams.eventParticipantUid].event.employee.uid].firstName }} {{ resourcePool[resourcePool[viewModel.routeParams.eventParticipantUid].event.employee.uid].lastName }}
+    // template-info-box
+    form.form-horizontal.form-bordered.form-row-stripped(name="exerciseQuizForm", novalidate="")
+      .form-wizard
+        .navbar.steps
+          .navbar-inner
+            ul.row-fluid.nav.nav-pills
+              li.span3(data-ng-repeat="(key, group) in viewModel.revision.groups | toArray | deleted | orderBy:'ordinal'", data-ng-class="{true:'active'}[viewModel.activeRevisionGroupUid == group.uid]")
+                a.step(href="#tab1", data-toggle="tab")
+                  span.number {{ key + 1 }}
+                  span.desc
+                    i.icon-ok
+                    | {{ group.name }}
+            // row-fluid
+          // navbar-inner
+        // navbar steps
+        .progress.progress-success.progress-striped
+          .bar(style="width: 25%;")
+        .tab-content(style="border:1px solid #CCC; margin-bottom:10px;")
+          .tab-pane(data-ng-repeat="group in viewModel.revision.groups | toArray | deleted | orderBy:'ordinal'", data-ng-class="{true:'active'}[viewModel.activeRevisionGroupUid == group.uid]")
+            h3.block(style="padding-left:10px;") {{ group.name }}
+            .control-group(data-ng-class="{success:viewModel.fields[field.uid].$valid, error:!viewModel.fields[field.uid].$valid, 'ng-pristine':viewModel.fields[field.uid].$pristine}", data-ng-repeat="field in resourcePool[group.uid].fields | deleted | orderBy:'ordinal'")
+              label.control-label {{ field.name }}
+              .controls
+                div(data-ng-switch="field.type")
+                  div(data-ng-switch-when="openResponse", data-ng-include="'viewPartialQuizExerciseSubmitterOpenResponse'")
+                  div(data-ng-switch-when="selectIndividual", data-ng-include="'viewPartialQuizExerciseSubmitterSelectIndividual'")
+                  div(data-ng-switch-when="selectMultiple", data-ng-include="'viewPartialQuizExerciseSubmitterSelectMultiple'")
+                  div(data-ng-switch-when="yesNo", data-ng-include="'viewPartialQuizExerciseSubmitterYesNo'")
+                  div(data-ng-switch-when="slider", data-ng-include="'viewPartialQuizExerciseSubmitterSlider'")
+                // data-ng-switch field.type
+                .clearfix
+              // controls
+            // control-group
+          // tab-pane
+        // tab-content
+        .form-actions.clearfix
+          button.btn(data-ng-click="viewModel.decrementActiveRevisionGroup()")
+            i.m-icon-swapleft
+            | Back
+          button.btn.blue(data-ng-disabled="!viewModel.isGroupValidContinue(viewModel.activeRevisionGroupUid)", data-ng-click="viewModel.incrementActiveRevisionGroup()")
+            | Continue
+            i.m-icon-swapright.m-icon-white
+          button.btn.green
+            | Submit
+            i.m-icon-swapright.m-icon-white
+        // form-actions
+      // form-wizard
+  // portlet-body

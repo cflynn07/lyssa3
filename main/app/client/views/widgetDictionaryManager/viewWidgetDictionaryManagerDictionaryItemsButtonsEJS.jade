@@ -1,0 +1,24 @@
+.inline-content.inline-content-responsive(style = "text-align:center;")
+  .button-group
+
+    button.btn.red(data-ng-hide  != "$parent.viewModel.editingDictionaryItemUid == '<%= full.uid %>'"
+                   data-ng-click != "$parent.viewModel.deleteConfirmDialogDictionaryItem('<%= full.uid %>')")
+      i.icon-trash.m-icon-white
+      |&nbsp;Archive
+    button.btn.blue(data-ng-hide  != "$parent.viewModel.editingDictionaryItemUid == '<%= full.uid %>'"
+                    data-ng-click != "$parent.viewModel.editDictionaryItem('<%= full.uid %>')"
+                    style          = "margin-left:5px;")
+      i.icon-pencil.m-icon-white
+      |&nbsp;Edit
+
+
+    button.btn.green(data-ng-show   != "$parent.viewModel.editingDictionaryItemUid == '<%= full.uid %>'"
+                   data-ng-disabled != "<%= name %>.$invalid"
+                   data-ng-click    != "$parent.viewModel.saveEditingDictionaryItem(<%= name %>.$invalid)")
+      i.icon-save.m-icon-white
+      |&nbsp;Save
+    button.btn.red(data-ng-show  != "$parent.viewModel.editingDictionaryItemUid == '<%= full.uid %>'"
+                   data-ng-click  = "$parent.viewModel.cancelEditDictionaryItem()"
+                   style          = "margin-left:5px;")
+      i.icon-remove.m-icon-white
+      |&nbsp;Cancel

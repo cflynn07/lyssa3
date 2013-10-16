@@ -1,0 +1,10 @@
+.modal-header
+  h1 {{title}}
+.modal-body
+  p
+    | Enter a value to pass to
+    code close
+    | as the result:
+    input(type="text", ng-model="result")
+.modal-footer
+  button.btn.btn-primary(ng-click="close(result)") Close

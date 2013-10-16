@@ -1,0 +1,36 @@
+
+<div data-ng-class="{'green sub-portlet':newTemplateGroupForm.$valid, 'grey':newTemplateGroupForm.$invalid}" data-ng-show="viewModel.showAddNewTemplateGroup" data-ng-animate="{show: 'slideDown', hide: 'slideUp'}" style="display:none;" class="portlet box">
+  <div class="portlet-title">
+    <h4><span>New Group</span></h4>
+  </div>
+  <div class="portlet-body light-grey">
+    <form name="newTemplateGroupForm" novalidate="" class="form-horizontal">
+      <div data-ng-class="{success:newTemplateGroupForm.name.$valid, error:!newTemplateGroupForm.name.$valid, 'ng-pristine':newTemplateGroupForm.name.$pristine}" class="control-group">
+        <label class="control-label">Name</label>
+        <div class="controls input-icon">
+          <input type="text" name="name" data-ng-model="viewModel.newTemplateGroupForm.name" data-ng-minlength="{{clientOrmShare.template.model.name.validate.len[0]}}" data-ng-maxlength="{{clientOrmShare.template.model.name.validate.len[1]}}" data-unique-field="{&quot;resource&quot;: &quot;template&quot;, &quot;property&quot;: &quot;name&quot;}" data-required="" class="large m-wrap"/><span class="input-success"><i class="icon-ok"></i></span><span class="input-error"><i class="icon-exclamation-sign"></i></span>
+          <div class="clear"></div><span data-ng-show="newTemplateGroupForm.name.$error.minlength" class="help-inline">Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters</span><span data-ng-show="newTemplateGroupForm.name.$error.maxlength" class="help-inline">Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters</span><span data-ng-show="newTemplateGroupForm.name.$error.uniqueField" class="help-inline">A template with the name "{{viewModel.newTemplateGroupForm.name}}" already exists</span>
+        </div>
+      </div>
+      <!-- template name control group-->
+      <div data-ng-class="{success:newTemplateGroupForm.description.$valid, error:!newTemplateGroupForm.description.$valid, 'ng-pristine':newTemplateGroupForm.description.$pristine}" class="control-group">
+        <label class="control-label">Description</label>
+        <div class="controls input-icon">
+          <!-- clientOrmShare.template.model.type.values-->
+          <textarea name="description" data-ng-model="viewModel.newTemplateGroupForm.description" rows="3" class="large m-wrap"></textarea>
+        </div>
+      </div>
+      <!-- template type control group-->
+      <div class="row-fluid">
+        <div class="span6 responsive span8">
+          <button data-ng-click="viewModel.clearnewTemplateGroupForm()" class="btn red btn-block"><i class="m-icon-swapleft m-icon-white"></i>Cancel</button>
+        </div>
+        <div class="span6 responsive span8">
+          <button type="submit" data-ng-disabled="newTemplateGroupForm.$invalid" data-ng-click="viewModel.postNewTemplateGroup()" class="btn green btn-block">Add<i class="m-icon-swapright m-icon-white"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- portlet body-->
+</div>
+<!-- Add Group Portlet-->

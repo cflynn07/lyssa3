@@ -1,0 +1,37 @@
+div(data-ng-controller="ControllerWidgetEmployeeManagerCSVUpload")
+  div(data-file-upload="", data-done="uploadComplete", data-start="uploadStart", data-url="/csv-upload", data-ng-model="filename")
+    div
+      span.btn.green.fileinput-button
+        i.icon-plus.icon-white
+        span.color:#FFF.!important; Upload Employees CSV
+        input(type="file", name="files[]", multiple="")
+      input(type="hidden", ng-model="filename")
+  br
+  .clearfix
+  p(data-ng-show="viewModel.uploadComplete && !viewModel.validCSV") ERROR! Invalid CSV Uploaded
+  h4(data-ng-show="viewModel.uploadComplete && viewModel.validCSV")
+    | Employees: {{ '#' + viewModel.csvUsersResult.length}}
+    | Progress: {{viewModel.currentProcessingIterator}} / {{viewModel.csvUsersResult.length}}
+  br
+  br
+  .progress.progress-striped.active(data-ng-show="viewModel.uploadComplete && viewModel.validCSV && viewModel.processingUsers")
+    .bar(style="width: {{ viewModel.currentProgressPercent }}%;")
+  br
+  br
+  button.btn.blue.btn-block(data-ng-click="viewModel.processNewUsers()", data-ng-show="viewModel.uploadComplete && viewModel.validCSV && !viewModel.processingUsers")
+    | Begin Processing
+    i.m-icon-swapright.m-icon-white
+  h3 Currently Processing:
+  table.table.table-striped.table-hover.table-bordered.dataTable
+    thead
+      tr
+        th First Name
+        th Last Name
+        th Email
+        th Phone
+    tbody
+      tr
+        td {{ viewModel.csvUsersResult[viewModel.currentProcessingIterator][0] }}
+        td {{ viewModel.csvUsersResult[viewModel.currentProcessingIterator][1] }}
+        td {{ viewModel.csvUsersResult[viewModel.currentProcessingIterator][2] }}
+        td {{ viewModel.csvUsersResult[viewModel.currentProcessingIterator][3] }}

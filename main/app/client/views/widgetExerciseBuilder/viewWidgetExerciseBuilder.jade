@@ -1,0 +1,333 @@
+div(data-ng-controller = "ControllerWidgetExerciseBuilder")
+
+  div(data-ng-hide = "viewModel.routeParams.revisionUid")
+
+
+
+    .row-fluid
+      .span3(style = "padding-bottom:10px;")      
+        .span6
+          button.btn.green.btn-block(data-ng-hide    = "viewModel.showAddNewTemplate"
+                                     data-ng-animate = "{show: 'fadeIn', hide: 'fadeOut'}"
+                                     data-ng-click   = "viewModel.showAddNewTemplate = true;")
+            i.icon-plus.m-icon-white
+            |&nbsp;New Template
+        .span6
+          button.btn.red.btn-block(data-ng-animate = "{show: 'fadeIn', hide: 'fadeOut'}"
+                                   data-ng-click   = "viewModel.showArchivedTemplates=!(!!viewModel.showArchivedTemplates)")
+            p(data-ng-show = "viewModel.showArchivedTemplates"
+              style        = "margin:0;")
+              i.icon-trash.m-icon-white
+              |&nbsp;Hide Archived
+            p(data-ng-show = "!viewModel.showArchivedTemplates"
+              style        = "margin:0;")
+              i.icon-trash.m-icon-white
+              |&nbsp;Show Archived
+
+
+
+
+    .row-fluid 
+       div(data-ng-include = "'viewPartialExerciseBuilderNewTemplateForm'")
+
+
+
+
+    .row-fluid(data-ng-show    = "viewModel.showArchivedTemplates"
+               style           = "display:none;"
+               data-ng-animate = "{show: 'slideDown', hide: 'slideUp'}")
+      .span12(style = "margin:0;")
+        .portlet.box.red(data-animate-in)
+          .portlet-title
+            h4
+              span Archived Templates ({{ viewModel.archivedListLength }})
+          .portlet-body
+            table.table.table-striped.table-hover.table-bordered.dataTable(data-data-table                        = "viewModel.archivedTemplatesListDataTable.options"
+                                                                           data-aa-data                           = "viewModel.templates"
+                                                                           data-ao-column-defs                    = "viewModel.archivedTemplatesListDataTable.columnDefs"
+                                                                           data-parent-data-table-view-model-prop = "archivedTemplatesListDataTable"
+                                                                           update-on-resource-post                = "template")
+              thead
+                tr
+                  th.sorting Name
+                  th.sorting_disabled Owner
+                  th.sorting_disabled Date
+                  th.sorting_disabled Finalized
+                  th.sorting_disabled     
+
+
+
+
+
+    .row-fluid
+      .span12(style = "margin:0;")
+        .portlet.box.grey(data-ng-show = "!viewModel.templatesListCollapsed"
+                          data-animate-in)
+          .portlet-title
+            h4
+              span Templates ({{ viewModel.nonArchivedListLength }})
+          .portlet-body
+            table.table.table-striped.table-hover.table-bordered.dataTable(data-data-table                        = "viewModel.templatesListDataTable.options"
+                                                                           data-aa-data                           = "viewModel.templates"
+                                                                           data-ao-column-defs                    = "viewModel.templatesListDataTable.columnDefs"
+                                                                           data-parent-data-table-view-model-prop = "templatesListDataTable"
+                                                                           update-on-resource-post                = "template")
+              thead
+                tr
+                  th.sorting Name
+                  th.sorting_disabled Owner
+                  th.sorting_disabled Date
+                  th.sorting_disabled Finalized
+                  th.sorting_disabled        
+
+  div(data-ng-show  = "viewModel.routeParams.revisionUid"
+      data-ng-class = "{true:'span12 no-second-box-margin', false:'span7'}[(viewModel.templatesListCollapsed && viewModel.routeParams.revisionUid)]")
+    
+
+    .row-fluid()
+      .span3(style = "padding-bottom:10px;")      
+        .span6
+          a.btn.blue(href = "{{ '#' + viewRoot }}")
+            i.icon-arrow-left.m-icon-white
+            |&nbsp;Templates
+
+
+    .portlet.box.grey(data-animate-in)
+      .portlet-title
+        h4
+          span {{ resourcePool[viewModel.routeParams.revisionUid].template.name }}
+      .portlet-body
+        div(data-ng-hide = "viewModel.routeParams.revisionUid")
+          .box.template-info-box.fade.in.ng-scope
+            .inline-content
+              strong
+                i.m-icon-big-swapleft(style = "vertical-align:middle; margin-top:0;")
+              h3 Select Template Revision
+        div(data-ng-show = "resourcePool[viewModel.routeParams.revisionUid]")
+          .box.template-info-box.fade.in
+            .row-fluid
+              .span12
+                h4(style = "font-weight:600; margin-top:0;")
+                  span Template Info
+                h2(data-ng-hide = "viewModel.showEditTemplateName"
+                   style        = "margin-top:0;")
+                  span {{ resourcePool[viewModel.routeParams.revisionUid].template.name }}
+                form.form-horizontal(name         = "formEditTemplateName"
+                                     data-ng-show = "viewModel.showEditTemplateName"
+                                     novalidate)
+                  .control-group(data-ng-class = "{success:formEditTemplateName.name.$valid, error:!formEditTemplateName.name.$valid, 'ng-pristine':formEditTemplateName.name.$pristine}")
+                    .row-fluid
+                      .span6
+                        input.span12.m-wrap(type              = "text"
+                                            name              = "name"
+                                            data-ng-model     = "viewModel.formEditTemplateName.name"
+                                            data-ng-minlength = "{{clientOrmShare.template.model.name.validate.len[0]}}"
+                                            data-ng-maxlength = "{{clientOrmShare.template.model.name.validate.len[1]}}"
+                                            data-unique-field = "{\"resource\": \"template\", \"property\": \"name\"}")
+                        span.help-inline(data-ng-show = "formEditTemplateName.name.$error.minlength")
+                          | Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters
+                        span.help-inline(data-ng-show = "formEditTemplateName.name.$error.maxlength")
+                          | Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters
+                        span.help-inline(data-ng-show = "formEditTemplateName.name.$error.uniqueField")
+                          | A template with the name "{{viewModel.formEditTemplateName.name}}" already exists
+                      .span6
+                        button.btn.btn-block.green.span6(style            = "margin-bottom: 5px;"
+                                                         data-ng-disabled = "formEditTemplateName.$invalid"
+                                                         data-ng-click    = "viewModel.putTemplate(viewModel.routeParams.revisionUid)")
+                          i.icon-save.m-icon-white
+                          | Save
+                        button.btn.red.btn-block.span6(style         = "margin-bottom: 5px; margin-top: 0;"
+                                                       data-ng-click = "viewModel.showEditTemplateName = false; formEditTemplateName.$setPristine(); viewModel.formEditTemplateName.name=viewModel.currentTemplate.name;")
+                          i.icon-remove.m-icon-white
+                          | Cancel
+            
+            .row-fluid
+              .span6
+                button.btn.blue.btn-block(style           = "margin-bottom: 5px;"
+                                          data-ng-hide    = "viewModel.showEditTemplateName"
+                                          data-ng-animate = "{show: 'fadeIn', hide: 'fadeOut'}"
+                                          data-ng-click   = "viewModel.showEditTemplateName=true; viewModel.formEditTemplateName.name = resourcePool[viewModel.routeParams.revisionUid].name;")
+                  i.icon-pencil.m-icon-white
+                  | Edit Name
+              .span6
+
+            .row-fluid
+              .span6
+                button.btn.green.btn-block(style            = "margin-bottom: 5px;"
+                                           data-ng-hide     = "viewModel.showAddNewTemplateGroup"
+                                           data-ng-animate  = "{show: 'fadeIn', hide: 'fadeOut'}"
+                                           data-ng-click    = "viewModel.showAddNewTemplateGroup=true;"
+                                           data-ng-disabled = "resourcePool[viewModel.routeParams.revisionUid].finalized")
+                  | Add Group
+                  i.m-icon-swapright.m-icon-white
+              .span6
+                button.btn.black.btn-block(style            = "margin-bottom: 5px;"
+                                           data-ng-disabled = "resourcePool[viewModel.routeParams.revisionUid].finalized || !resourcePool[viewModel.routeParams.revisionUid].isFresh"
+                                           data-ng-click    = "viewModel.putRevisionFinalize()")
+                  i.icon-save.m-icon-white
+                  span(data-ng-hide = "resourcePool[viewModel.routeParams.revisionUid].finalized") Save Revision
+                  span(data-ng-show = "resourcePool[viewModel.routeParams.revisionUid].finalized") Saved
+
+
+
+          div(data-ng-include = "'viewPartialExerciseBuilderNewGroupForm'")
+          .box.template-info-box.fade.in(data-ng-init = "editRevisionChangeSummary = false")
+            h4(style = "font-weight:600; margin-top:0;")
+              span Revision Change Summary
+           
+            div(data-ng-show = "resourcePool[viewModel.routeParams.revisionUid].finalized")
+              p(style        = "font-size:14px;"
+                data-ng-hide = "editRevisionChangeSummary")
+                | {{resourcePool[viewModel.routeParams.revisionUid].changeSummary}}
+
+            div(data-ng-hide = "resourcePool[viewModel.routeParams.revisionUid].finalized")
+              p(style        = "font-size:14px;"
+                data-ng-hide = "editRevisionChangeSummary")
+                | {{resourcePool[viewModel.routeParams.revisionUid].changeSummary}}
+              form(data-ng-show = "editRevisionChangeSummary"
+                   style        = "margin:0;"
+                   name         = "revisionChangeSummaryForm")
+                .control-group(style = "margin:0;")
+                  .controls(style = "text-align:center;")
+                    textarea.large.m-wrap(name          = "revisionChangeSummary"
+                                          data-ng-model = "viewModel.revisionChangeSummary"
+                                          style         = "width:97% !important; background-color:#FFF;"
+                                          rows          = "3")
+              .span12(data-ng-show = "editRevisionChangeSummary"
+                      style        = "margin-left:0;")
+                button.btn.green.btn-block.span6(data-ng-show     = "editRevisionChangeSummary"
+                                                 style            = "margin-bottom: 5px;", 
+                                                 data-ng-disabled = "resourcePool[viewModel.routeParams.revisionUid].changeSummary == viewModel.revisionChangeSummary", 
+                                                 data-ng-click    = "viewModel.putRevisionChangeSummary(); editRevisionChangeSummary = false;")
+                  i.icon-save.m-icon-white
+                  | Save
+                button.btn.red.btn-block.span6(data-ng-show  = "editRevisionChangeSummary"
+                                               style         = "margin-bottom: 5px; margin-top: 0;"
+                                               data-ng-click = "editRevisionChangeSummary = false;")
+                  i.icon-remove.m-icon-white
+                  | Cancel
+              .span12(data-ng-hide = "editRevisionChangeSummary"
+                      style        = "margin-left:0;")
+                button.btn.blue.btn-block(data-ng-hide  = "editRevisionChangeSummary"
+                                          style         = "margin-bottom: 5px;"
+                                          data-ng-click = "viewModel.revisionChangeSummary = resourcePool[viewModel.routeParams.revisionUid].changeSummary; editRevisionChangeSummary = true;")
+                  i.icon-pencil.m-icon-white
+                  | Edit
+              .clearfix
+
+
+          ul.breadcrumb(style = "box-shadow:none !important; border:2px solid #DDD !important;")
+            li
+              i.icon-home
+              a Groups
+              i.icon-angle-right
+
+          div(data-ng-hide = "resourcePool[viewModel.routeParams.revisionUid].groups")
+            .progress.progress-striped.active
+              .bar(style="width: 100%;")
+          div(data-ng-repeat="group in resourcePool[viewModel.routeParams.revisionUid].groups | toArray | deleted | orderBy:'ordinal':false", data-ng-init="nameEditing=false;", data-group-uid="{{ group.uid }}")
+            .template-builder-group(data-ng-controller="ControllerWidgetExerciseBuilderGroupEdit")
+              .navbar(style="margin-bottom:0;", data-ng-include="'viewPartialExerciseBuilderGroupMenu'")
+              .box.template-info-box.fade.in(style="border-top:0px;")
+                .inline-content(style="margin-bottom:10px;", data-ng-show="viewModel.showAddNewField_OpenType == ''", data-ng-animate="{show:'fadeIn'}")
+                  strong
+                    i.m-icon-big-swapup(style="vertical-align:middle; margin-top:0;")
+                  h3 Add Fields To Exercise Group
+
+                .portlet.box(data-ng-controller="ControllerWidgetExerciseBuilderGroupFieldOpenResponse", style="display:none;", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", data-ng-show="viewModel.showAddNewField_OpenType == 'OpenResponse'", data-ng-class="{'green sub-portlet':formOpenResponseAdd.$valid, 'grey':formOpenResponseAdd.$invalid}")
+                  .portlet-title
+                    h4
+                      span
+                        | New
+                        strong Open Response
+                        | Field
+                  .portlet-body.light-grey
+                    form.form-horizontal(name="formOpenResponseAdd", data-ng-include="'viewPartialExerciseBuilderGroupFieldOpenResponse'", novalidate="")
+                    div(data-ng-include="'viewWidgetExerciseBuilderFieldButtons'")
+                .portlet.box(data-ng-controller="ControllerWidgetExerciseBuilderGroupFieldSelectIndividual", style="display:none;", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", data-ng-show="viewModel.showAddNewField_OpenType == 'SelectIndividual'", data-ng-class="{'green sub-portlet':formSelectIndividualAdd.$valid, 'grey':formSelectIndividualAdd.$invalid}")
+                  .portlet-title
+                    h4
+                      span
+                        | New
+                        strong Select Individual
+                        | Field
+                  .portlet-body.light-grey
+                    form.form-horizontal(name="formSelectIndividualAdd", data-ng-include="'viewPartialExerciseBuilderGroupFieldSelectIndividual'", novalidate="")
+                    div(data-ng-include="'viewWidgetExerciseBuilderFieldButtons'")
+                .portlet.box(data-ng-controller="ControllerWidgetExerciseBuilderGroupFieldSelectMultiple", style="display:none;", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", data-ng-show="viewModel.showAddNewField_OpenType == 'SelectMultiple'", data-ng-class="{'green sub-portlet':formSelectMultipleAdd.$valid, 'grey':formSelectMultipleAdd.$invalid}")
+                  .portlet-title
+                    h4
+                      span
+                        | New
+                        strong Select Multiple
+                        | Field
+                  .portlet-body.light-grey
+                    form.form-horizontal(name="formSelectMultipleAdd", data-ng-include="'viewPartialExerciseBuilderGroupFieldOpenResponse'", novalidate="")
+                    div(data-ng-include="'viewWidgetExerciseBuilderFieldButtons'")
+                .portlet.box(data-ng-controller="ControllerWidgetExerciseBuilderGroupFieldYesNo", style="display:none;", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", data-ng-show="viewModel.showAddNewField_OpenType == 'YesNo'", data-ng-class="{'green sub-portlet':formYesNoAdd.$valid, 'grey':formYesNoAdd.$invalid}")
+                  .portlet-title
+                    h4
+                      span
+                        | New
+                        strong Yes/No
+                        | Field
+                  .portlet-body.light-grey
+                    form.form-horizontal(name="formYesNoAdd", data-ng-include="'viewPartialExerciseBuilderGroupFieldOpenResponse'", novalidate="")
+                    div(data-ng-include="'viewWidgetExerciseBuilderFieldButtons'")
+                .portlet.box(data-ng-controller="ControllerWidgetExerciseBuilderGroupFieldPercentageSlider", style="display:none;", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", data-ng-show="viewModel.showAddNewField_OpenType == 'PercentageSlider'", data-ng-class="{'green sub-portlet':formPercentageSliderAdd.$valid, 'grey':formPercentageSliderAdd.$invalid}")
+                  .portlet-title
+                    h4
+                      span
+                        | New
+                        strong Percentage Slider
+                        | Field
+                  .portlet-body.light-grey
+                    form.form-horizontal(name="formPercentageSliderAdd", data-ng-include="'viewPartialExerciseBuilderGroupFieldPercentageSlider'", novalidate="")
+                    div(data-ng-include="'viewWidgetExerciseBuilderFieldButtons'")
+                // / new field forms
+                form.form-horizontal.template-builder-form
+                  div(data-ui-sortable="fieldsSortableOptions")
+                    div(data-ng-repeat="field in resourcePool[group.uid].fields | orderBy:'ordinal'", data-field-uid="{{field.uid}}")
+                      div(data-ng-switch="field.type")
+                        .portlet.box.grey
+                          .portlet-title
+                            .caption
+                              h4.inline-content(style="margin-bottom:0 !important; width:100%;")
+                                i.icon-reorder(data-ng-class="{ 'icon-reorder-disabled': resourcePool[viewModel.routeParams.revisionUid].finalized }")
+                                .btn-group
+                                  a.btn.blue(href="#", data-toggle="dropdown")
+                                    | Field Options
+                                    i.icon-angle-down(style="color:#FFF;")
+                                  ul.dropdown-menu
+                                    li
+                                      a(href="#")
+                                        i.icon-pencil
+                                        | Edit
+                                    li
+                                      a.color-red(href="#")
+                                        i.icon-trash
+                                        | Delete
+                                // btn-group
+                                span(style="color:#FFF !important;") {{ field.name }}
+                                span(style="color:#FFF !important; float:right;")
+                                  a.btn.blue(data-ng-click="hidePortletBody = !hidePortletBody")
+                                    p(data-ng-hide="hidePortletBody", style="margin:0;")
+                                      i.halflings-icon.white.chevron-up(style="margin:2px 0 0 0; width:11px;")
+                                      span(style="vertical-align:bottom; font-size:14px;")
+                                    p(data-ng-show="hidePortletBody", style="margin:0; width:11px;")
+                                      span(style="vertical-align:bottom; font-size:14px;")
+                                      i.halflings-icon.white.chevron-down(style="margin:2px 0 0 0;")
+                            // caption
+                          // portlet-title
+                          .portlet-body(data-ng-hide="hidePortletBody", style="background-color:#FFF; padding:10px 0 10px 0;")
+                            .box.template-info-box.fade.in Field Info Goes Here?
+                            div(data-ng-include="'viewPartialExerciseBuilderFieldOpenResponse'", data-ng-switch-when="openResponse")
+                            // openResponse
+                            div(data-ng-include="'viewPartialExerciseBuilderFieldSelectIndividual'", data-ng-switch-when="selectIndividual")
+                            // selectIndividual
+                            div(data-ng-switch-when="selectMultiple")
+                            // selectMultiple
+                            div(data-ng-switch-when="yesNo")
+                            // yesNo
+                            div(data-ng-include="'viewPartialExerciseBuilderFieldSlider'", data-ng-switch-when="slider")
+                 

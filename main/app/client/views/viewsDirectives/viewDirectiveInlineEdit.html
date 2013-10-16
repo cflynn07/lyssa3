@@ -1,0 +1,2 @@
+<span style="text-decoration:underline; cursor:pointer; color:blue;" data-ng-hide="editMode" data-ng-click="editMode=true;value=model">{{model}}</span>
+<input type="text" data-ng-model="value" data-ng-show="editMode" data-ng-change="model=value"/><a data-ng-click="editMode=true;value=model" data-ng-hide="editMode" href="" class="btn blue mini">Edit</a><a data-ng-click="editMode=false;model=value" data-ng-show="editMode" href="" class="btn green mini">Save</a>

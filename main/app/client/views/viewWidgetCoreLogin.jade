@@ -1,0 +1,59 @@
+.logo
+.content.portlet.box.blue.widget-themis-finish.animated.fadeInDown(data-ng-controller = "ControllerWidgetCoreLogin")
+  .portlet-title
+    h4(style="color: #FFF;")
+      i.icon-plus
+      | Themis v0.1
+  .portlet-body
+    form.form-vertical.login-form(action="", data-ng-submit="authenticate()")
+      input(type="submit", style="position: absolute; left: -9999px; width: 1px; height: 1px;")
+      h3.form-title Sign In
+      .control-group
+        .controls
+          .input-icon.left
+            i.icon-user
+            input.m-wrap(type="text", autocorrect="off", autocapitalize="off", placeholder="Username", data-ng-model="username", data-ng-disabled="submitting")
+      .control-group
+        .controls
+          .input-icon.left
+            i.icon-lock
+            input.m-wrap(type="password", placeholder="Password", data-ng-model="password", data-ng-disabled="submitting")
+      div(style="border: 0; margin-bottom: 0;")
+        div
+          button.btn.pull-right(data-ng-class="{true:'black',false:'green'}[submitting]", type="button", data-ng-click="!submitting && authenticate()", data-ng-disabled="submitting")
+            p(data-ng-hide = "submitting"
+              style        = "margin:0;")
+              |Login&nbsp;
+              i.m-icon-swapright.m-icon-white
+            p.activity(data-ng-show = "submitting"
+                       style        = "margin:0;")
+              i.icon-cog.icon-spin
+              |&nbsp;Authenticating...
+      .clearfix
+      .alert.alert-error(style           = "margin-top: 10px; margin-bottom: 0;"
+                         data-ng-show    = "errorMessage"
+                         data-ng-animate = "{show: 'slide-down'}")
+        strong Error!
+        br
+        span {{errorMessage}}
+      .forget-password(data-ng-show="false", style="margin-top: 10px;")
+        h4 Forgot your password?
+        p
+          | no worries, click
+          a#forget-password .(href="javascript:;") here
+          | to reset your password.
+    form.form-vertical.forget-form(data-ng-show="false", action="index.html")
+      h3 . Forget Password?
+      p Enter your e-mail address below to reset your password.
+      .control-group
+        .controls
+          .input-icon.left
+            i.icon-envelope
+            input.m-wrap(type="text", placeholder="Email")
+      .form-actions
+        a#back-btn.btn(href="javascript:;")
+          i.m-icon-swapleft
+          | Back
+        a#forget-btn.btn.green.pull-right(href="javascript:;")
+          | Submit
+          i.m-icon-swapright.m-icon-white

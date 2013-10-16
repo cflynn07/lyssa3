@@ -1,0 +1,5 @@
+.row-fluid(data-ng-repeat  = "row in widgetRows")
+
+  div(data-ng-class   = "widgetObj.spanLength"
+      data-ng-repeat  = "widgetObj in row"
+      data-ng-include = "widgetObj.widget")

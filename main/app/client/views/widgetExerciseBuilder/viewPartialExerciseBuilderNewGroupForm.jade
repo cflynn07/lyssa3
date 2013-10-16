@@ -1,0 +1,39 @@
+.portlet.box(data-ng-class="{'green sub-portlet':newTemplateGroupForm.$valid, 'grey':newTemplateGroupForm.$invalid}", data-ng-show="viewModel.showAddNewTemplateGroup", data-ng-animate="{show: 'slideDown', hide: 'slideUp'}", style="display:none;")
+  .portlet-title
+    h4
+      span New Group
+  .portlet-body.light-grey
+    form.form-horizontal(name="newTemplateGroupForm", novalidate="")
+      .control-group(data-ng-class="{success:newTemplateGroupForm.name.$valid, error:!newTemplateGroupForm.name.$valid, 'ng-pristine':newTemplateGroupForm.name.$pristine}")
+        label.control-label Name
+        .controls.input-icon
+          input.large.m-wrap(type="text", name="name", data-ng-model="viewModel.newTemplateGroupForm.name", data-ng-minlength="{{clientOrmShare.template.model.name.validate.len[0]}}", data-ng-maxlength="{{clientOrmShare.template.model.name.validate.len[1]}}", data-unique-field="{\"resource\": \"template\", \"property\": \"name\"}", data-required="")
+          span.input-success
+            i.icon-ok
+          span.input-error
+            i.icon-exclamation-sign
+          .clear
+          span.help-inline(data-ng-show="newTemplateGroupForm.name.$error.minlength")
+            | Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters
+          span.help-inline(data-ng-show="newTemplateGroupForm.name.$error.maxlength")
+            | Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters
+          span.help-inline(data-ng-show="newTemplateGroupForm.name.$error.uniqueField")
+            | A template with the name "{{viewModel.newTemplateGroupForm.name}}" already exists
+      // template name control group
+      .control-group(data-ng-class="{success:newTemplateGroupForm.description.$valid, error:!newTemplateGroupForm.description.$valid, 'ng-pristine':newTemplateGroupForm.description.$pristine}")
+        label.control-label Description
+        .controls.input-icon
+          // clientOrmShare.template.model.type.values
+          textarea.large.m-wrap(name="description", data-ng-model="viewModel.newTemplateGroupForm.description", rows="3")
+      // template type control group
+      .row-fluid
+        .span6.responsive.span8
+          button.btn.red.btn-block(data-ng-click="viewModel.clearnewTemplateGroupForm()")
+            i.m-icon-swapleft.m-icon-white
+            | Cancel
+        .span6.responsive.span8
+          button.btn.green.btn-block(type="submit", data-ng-disabled="newTemplateGroupForm.$invalid", data-ng-click="viewModel.postNewTemplateGroup()")
+            | Add
+            i.m-icon-swapright.m-icon-white
+  // portlet body
+// Add Group Portlet

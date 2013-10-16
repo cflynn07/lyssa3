@@ -1,0 +1,400 @@
+Permissions Levels:
+SA  - Super Admin
+CSA - Client Super Admin
+CA  - Client Admin
+CD  - Client Delegate
+CAD - Client Auditor
+
+
+/**
+Resource Expansion:
+ - Only allow "downstream" resource expansion. That is given any collection, only allow to eagerly load associated
+ collections that are related by "hasMany" or "hasOne" relationships. Not "belongsTo".
+
+**/
+
+
+Resource: Client
+    -   hasMany:    Employee
+    -   hasMany:    Template
+    -   hasMany:    Event
+    -   hasMany:    Submission
+    //TODO... add more
+*   GET /clients/
+        SA:     Return all clients
+        CSA:    Return client with same clientID as authenticated user
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+*   GET /clients/:id
+        SA:     Return any client that exists
+        CSA:    Return client with same clientID as authenticated user, otherwise 401 Unauthorized
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+    POST /clients/
+        SA:     Create a client [Required:]
+        CSA:    false
+        CA:     false
+        CD:     false
+        CAD:    false
+    PUT /clients/:id
+        SA:     Update a client [Required: clientID]
+        CSA:    false
+        CA:     false
+        CD:     false
+        CAD:    false
+    DELETE /clients/:id
+        SA:     Delete a client [Required: clientID]
+        CSA:    false
+        CA:     false
+        CD:     false
+        CAD:    false
+
+
+Resource: Employee
+    -   belongsTo:  Client
+    -   hasMany:    Event
+    -   hasMany:    Submission
+    GET /employees/
+        SA:     Return all employees
+        CSA:    Return all employees with same clientID as authenticated user
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+    GET /employees/:id
+        SA:     Return any employee
+        CSA:    Return any employees with same clientID as authenticated user
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+    POST /employees/
+        SA:     Create an employee
+        CSA:    Create an employee
+        CA:     ^
+        CD:     false
+        CAD:    false
+    PUT /employees/
+        SA:     Update an employee [Required: employeeID]
+        CSA:    Update an employee [Required: employeeID]
+                [Restriction: Only employees with same clientID as authenticated user]
+        CA:     ^
+        CD:     false
+        CAD:    false
+    DELETE /employees/
+        SA:     Delete an employee [Required: employeeID]
+        CSA:    Delete an employee [Required: employeeID]
+                [Restriction: Only employees with same clientID as authenticated user]
+        CA:     ^
+        CD:     false
+        CAD:    false
+
+
+
+
+
+
+/*-----------------------------
+    Resource: User
+        -   belongsTo:  Employee
+        -   hasMany:    Template
+        -   hasMany:    Revision
+        -   hasMany:    Event
+        GET /users/     EXAMPLES: [/users?id=44 || /users?offset=10&limit=10 || /users?name={contains=a}]
+            SA:     Return all users
+            CSA:    Return all users that share the authenticated user's clientID
+            CA:     ^
+            CD:     Return only this user
+            CAD:    ^
+        POST /users/
+            SA:     Create user. clientID required.
+            CSA:    Create user. clientID assumed identical to authenticated user's clientID
+            CA:     ^
+            CD:     false
+            CAD:    false
+        PUT /users/
+            SA:     Update any user
+            CSA:    Update any user with same clientID. Can make Super-Admins. Can not set self to
+                    non-super-admin if only CSA
+            CA:     Update any user with same clientID. Can not make any user a CSA or set a CSA to not CSA
+            CD:     false
+            CAD:    false
+        DELETE /users/
+            SA:     Delete any user
+            CSA:    Delete any user with same clientID. Can not delete self if only CSA.
+            CA:     Delete any user other than SA, CSA, CA
+            CD:     false
+            CAD:    false
+-----------------------------*/
+
+
+
+
+
+
+
+Resource Template
+    -   belongsTo:  User
+    -   belongsTo:  Client
+    -   hasMany:    Revision
+    GET /templates/
+        SA:     Return all templates
+        CSA:    Return all templates that share the authenticated user's clientID
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+    POST /templates/
+        SA:     Create a template. [Required: clientID, userID]
+        CSA:    Create a template. [Required: userID]
+        CA:     ^
+        CD:     false
+        CAD:    false
+    PUT /templates/
+        SA:     Update a template. [Required: templateID]
+        CSA:    Update a template that share the authenticated user's clientID
+                [Required: templateID]
+        CA:     ^
+        CD:     false
+        CAD:    false
+    DELETE /templates/
+        SA:     Delete a template [Required: templateID]
+        CSA:    Delete a template that share the authenticated user's clientID
+                [Required: templateID]
+        CA:     ^
+        CD:     false
+        CAD:    false
+
+
+Resource Revision
+    -   belongsTo:  Template
+    -   belongsTo:  User
+    -   hasMany:    Group
+    -   hasMany:    Event
+    -   hasMany:    Submission
+    GET /revisions/
+        SA:     Return all revisions
+        CSA:    Return all revisions that belong to the client of the authenticated user
+        CA:     ^
+        CD:     ^
+        CAD:    ^
+    POST /revisions/
+        SA:     Create a revision [Required: clientID, templateID]
+        CSA:    Create a revision [Required: templateID]
+        CA:     ^
+        CD:     false
+        CAD:    false
+    PUT /revisions/
+        SA:     Update a revision [Required: revisionID]
+        CSA:    Update a revision [Required: revisionID]
+                [Restriction: revision must be most current]
+        CA:     ^
+        CD:     false
+        CAD:    false
+    DELETE /revisions/
+        SA:     Delete a revision [Required: revisionID]
+        CSA:    false
+        CA:     false
+        CD:     false
+        CAD:    false
+
+
+Resource Group
+    -   belongsTo:  Template
+    -   hasMany:    Question
+    GET /groups/
+        SA:     Return all groups
+        CSA:    Return all
+        CA:
+        CD:
+        CAD:
+    POST /groups/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /groups/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /groups/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+
+Resource Question
+    -   belongsTo:  Group
+    -   hasMany:    SubmissionField
+    GET /questions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /questions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /questions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /questions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+
+Resource Event
+    -   belongsTo:  Client
+    -   belongsTo:  User
+    -   belongsTo:  Employee
+    -   hasOne:     Revision
+    -   hasOne:     Submission
+    GET /events/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /events/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /events/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /events/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+Resource Submission
+    -   belongsTo:  Event
+    -   belongsTo:  Revision
+    -   hasMany:    SubmissionQuestion
+    GET /submissions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /submissions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /submissions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /submissions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+Resource SubmissionQuestion
+    -   belongsTo:  Submission
+    -   belongsTo:  Question
+    GET /submissionsquestions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /submissionsquestions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /submissionsquestions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /submissionsquestions/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+Resource Dictionary
+    -   belongsTo:  Client
+    -   hasMany:    DictionaryItem
+    GET /dictionary/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /dictionary/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /dictionary/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /dictionary/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+
+Resource DictionaryItem
+    -   belongsTo:  Dictionary
+    GET /dictionaryitem/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    POST /dictionaryitem/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    PUT /dictionaryitem/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:
+    DELETE /dictionaryitem/
+        SA:
+        CSA:
+        CA:
+        CD:
+        CAD:

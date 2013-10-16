@@ -1,0 +1,77 @@
+ <div
+  data-ng-class = "{success:formOpenResponseAdd.name.$valid, error:!formOpenResponseAdd.name.$valid, 'ng-pristine':formOpenResponseAdd.name.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Name</label>
+  <div class="controls input-icon">
+    <input
+      required
+      class             = "large m-wrap"
+      data-ng-minlength = "{{clientOrmShare.field.model.name.validate.len[0]}}"
+      data-ng-maxlength = "{{clientOrmShare.field.model.name.validate.len[1]}}"
+      data-ng-model     = "form.name"
+      type              = "text"
+      name              = "name">
+
+    <span class="input-success">
+      <i class="icon-ok"></i>
+    </span>
+
+    <span class="input-error">
+      <i class="icon-exclamation-sign"></i>
+    </span>
+
+    <div class="clear"></div>
+
+    <span
+      data-ng-show = "formOpenResponseAdd.name.$error.minlength"
+      class        = "help-inline">Name must be longer than {{clientOrmShare.field.model.name.validate.len[0]}} characters</span>
+
+    <span
+      data-ng-show = "formOpenResponseAdd.name.$error.maxlength"
+      class        = "help-inline">Name must be shorter than {{clientOrmShare.field.model.name.validate.len[1]}} characters</span>
+
+  </div>
+</div>
+
+
+<div class="control-group">
+  <label class="control-label">Description</label>
+  <div class="controls">
+    <textarea
+      data-ng-model = "form.description"
+      name          = "description"
+      class         = "large m-wrap"
+      rows          = "3"></textarea>
+  </div>
+</div>
+
+
+<div
+  data-ng-class = "{success:formOpenResponseAdd.minLength.$valid, error:!formOpenResponseAdd.minLength.$valid, 'ng-pristine':formOpenResponseAdd.minLength.$pristine}"
+  class="control-group">
+  <label class="control-label">Minimum Response Character Length</label>
+  <div class="controls">
+    <input
+      required
+      type          = "text"
+      data-ng-model = "form.minLength"
+      name          = "minLength"
+      data-ui-mask  = "'9?9999'"
+      class         = "medium m-wrap"></input>
+  </div>
+</div>
+
+<div
+  data-ng-class = "{success:formOpenResponseAdd.maxLength.$valid, error:!formOpenResponseAdd.maxLength.$valid, 'ng-pristine':formOpenResponseAdd.maxLength.$pristine}"
+  class="control-group">
+  <label class="control-label">Maximum Response Character Length</label>
+  <div class="controls">
+    <input
+      required
+      type          = "text"
+      data-ng-model = "form.maxLength"
+      name          = "maxLength"
+      data-ui-mask  = "'9?9999'"
+      class         = "medium m-wrap"></input>
+  </div>
+</div>

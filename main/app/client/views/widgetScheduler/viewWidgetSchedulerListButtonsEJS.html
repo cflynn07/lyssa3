@@ -1,0 +1,10 @@
+
+<div style="text-align:center;" class="inline-content inline-content-responsive">
+  <div style="margin-bottom:0px !important; text-align:left;" class="btn-group"><a data-ng-class="{true:'black', false:'blue'}[viewModel.currentDictionaryUid == '&lt;%= full.uid %&gt;']" href="#&lt;%= viewRoot %&gt;/&lt;%= full.uid %&gt;" class="btn">Edit<i data-ng-hide="viewModel.currentDictionaryUid == '&lt;%= full.uid %&gt;'" class="m-icon-swapright m-icon-white"></i><i data-ng-show="viewModel.currentDictionaryUid == '&lt;%= full.uid %&gt;'" class="m-icon-swapleft m-icon-white"></i></a>
+    <button class="btn dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu pull-right">
+      <li><a href="#"><i class="icon-pencil"></i>Rename</a></li>
+      <li><a data-ng-click="$parent.viewModel.deleteConfirmDialogDictionary('&lt;%= full.uid %&gt;')"><i class="icon-trash"></i>Archive</a></li>
+    </ul>
+  </div>
+</div>

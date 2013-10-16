@@ -1,0 +1,20 @@
+www:
+  type: nodejs
+  approot: main
+  postinstall: ./postinstall.sh
+  processes:
+    main: 'node ./app/server/bootstrap.js'
+  config:
+    node_version: v0.8.x
+cron:
+  type: nodejs
+  approot: main
+  postinstall: ./postinstall.sh
+  processes:
+    cron: 'node ./app/server/cron.js'
+  config:
+    node_version: v0.8.x
+db:
+  type: mysql
+data:
+  type: redis

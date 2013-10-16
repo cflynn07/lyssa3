@@ -1,0 +1,21 @@
+.col1
+  .cont
+    .cont-col1
+      .label.label-success
+        i.icon-calendar
+    .cont-col2
+      .desc
+        h4(style="margin:0;") New Exercise
+        span.date-color {{ resourcePool[value.uid].createdAt | fromNow }}
+        div(style="margin-top:5px;")
+          a.color-blue(href="#/admin/themis/schedule/{{ value.eventUid }}") {{ resourcePool[value.eventUid].name }}
+          | created by {{ resourcePool[value.employeeUid].firstName }} {{ resourcePool[value.employeeUid].lastName }}
+          span(data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length")
+            | (
+            | {{ (resourcePool[value.uid].event.eventParticipants | toArray).length }}
+            span(data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length > 1") Participants
+            span(data-ng-show="(resourcePool[value.uid].event.eventParticipants | toArray).length == 1") Participant
+            | )
+.col2
+  .date
+    | {{ resourcePool[value.uid].createdAt | date:'short' }}

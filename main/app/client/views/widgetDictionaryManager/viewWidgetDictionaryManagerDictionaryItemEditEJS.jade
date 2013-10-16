@@ -1,0 +1,20 @@
+form(name != "<%= name %>"
+     novalidate)
+
+  span(data-ng-bind != "resourcePool['<%= uid %>'].name"
+       data-ng-hide != "$parent.viewModel.editingDictionaryItemUid == '<%= uid %>'")
+
+  input(type          = "text"
+    required
+    name              = "name"
+    data-ng-minlength = "{{clientOrmShare.dictionaryItem.model.name.validate.len[0]}}"
+    data-ng-maxlength = "{{clientOrmShare.dictionaryItem.model.name.validate.len[1]}}"
+    data-ng-show      != "$parent.viewModel.editingDictionaryItemUid == '<%= uid %>'"
+    data-ng-model     = "$parent.viewModel.editingDictionaryItemTempValue")
+
+  span.help-inline(data-ng-show != "<%= name %>.name.$error.minlength"
+                   style         = "color:red;")
+    | Name must be longer than {{clientOrmShare.dictionaryItem.model.name.validate.len[0]}} characters
+  span.help-inline(data-ng-show != "<%= name %>.name.$error.maxlength"
+                   style         = "color:red;")
+    | Name must be shorter than {{clientOrmShare.dictionaryItem.model.name.validate.len[1]}} characters

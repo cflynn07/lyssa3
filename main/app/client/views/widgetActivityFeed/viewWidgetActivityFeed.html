@@ -1,0 +1,20 @@
+
+<div data-ng-controller="ControllerWidgetActivityFeed" data-animate-in="data-animate-in" class="portlet box grey">
+  <div class="portlet-title">
+    <h4><span>Recent Activity</span></h4>
+  </div>
+  <div style="max-height:400px; overflow-y:scroll;" class="portlet-body">
+    <div data-ng-hide="rootActivityFeed !== false" class="progress progress-striped active">
+      <div style="width: 100%;" class="bar"></div>
+    </div>
+    <ul class="feeds">
+      <li data-ng-repeat="(key, value) in rootActivityFeed | toArray | orderBy:'createdAt':true" class="animated fadeInDown">
+        <div data-ng-animate="" data-ng-show="value.type == 'createDictionary'" data-ng-include="'viewPartialActivityFeedCreateDictionary'"></div>
+        <div data-ng-animate="" data-ng-show="value.type == 'createEmployee'" data-ng-include="'viewPartialActivityFeedCreateEmployee'"></div>
+        <div data-ng-animate="" data-ng-show="value.type == 'createEvent'" data-ng-include="'viewPartialActivityFeedCreateEvent'"></div>
+        <div data-ng-animate="" data-ng-show="value.type == 'eventInitialized'" data-ng-include="'viewPartialActivityFeedEventInitialized'"></div>
+      </li>
+    </ul>
+  </div>
+  <!-- portlet-body-->
+</div>

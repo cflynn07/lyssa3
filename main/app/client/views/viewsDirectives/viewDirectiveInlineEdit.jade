@@ -1,0 +1,4 @@
+span(style="text-decoration:underline; cursor:pointer; color:blue;", data-ng-hide="editMode", data-ng-click="editMode=true;value=model") {{model}}
+input(type="text", data-ng-model="value", data-ng-show="editMode", data-ng-change="model=value")
+a.btn.blue.mini(data-ng-click="editMode=true;value=model", data-ng-hide="editMode", href="") Edit
+a.btn.green.mini(data-ng-click="editMode=false;model=value", data-ng-show="editMode", href="") Save

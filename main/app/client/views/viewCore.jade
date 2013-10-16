@@ -1,0 +1,24 @@
+// HEADER GOES HERE
+
+.header.navbar.navbar-inverse.navbar-fixed-top(style              = "z-index:1001;"  
+                                               data-ng-controller = "ControllerWidgetCoreHeader" 
+                                               data-ng-include    = "'viewWidgetCoreHeader'")
+
+.page-container.row-fluid(data-ng-class = "{'sidebar-closed':sidebarClosed}")
+  // LEFT MENU GOES HERE
+
+  .page-sidebar.nav-collapse.collapse(data-ng-hide       = "quizMode"
+                                      data-ng-class      = "{'in':topBarOpen}"
+                                      style              = "z-index:1000;"
+                                      data-ng-controller = "ControllerWidgetCoreLeftMenu"
+                                      data-ng-include    = "'viewWidgetCoreLeftMenu'")
+
+  .page-content(data-ng-class = "{'page-content-quiz-mode':quizMode}")
+    
+    // PAGE CONTENT GOES HERE
+    .container-fluid(data-ng-controller = "ControllerCoreWidgets"
+                     data-ng-include    = "'viewCoreWidgets'")
+
+.footer(data-ng-show       = "false"
+        data-ng-controller = "ControllerWidgetCoreFooter"
+        data-ng-include    = "'viewWidgetCoreFooter'")

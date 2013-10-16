@@ -1,0 +1,123 @@
+<div
+  data-ng-class = "{success:formPercentageSliderAdd.name.$valid, error:!formPercentageSliderAdd.name.$valid, 'ng-pristine':formPercentageSliderAdd.name.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Name</label>
+  <div class="controls input-icon">
+    <input
+      required
+      class             = "large m-wrap"
+      data-ng-minlength = "{{clientOrmShare.field.model.name.validate.len[0]}}"
+      data-ng-maxlength = "{{clientOrmShare.field.model.name.validate.len[1]}}"
+      data-ng-model     = "form.name"
+      type              = "text"
+      name              = "name">
+
+    <span class="input-success">
+      <i class="icon-ok"></i>
+    </span>
+
+    <span class="input-error">
+      <i class="icon-exclamation-sign"></i>
+    </span>
+
+    <div class="clear"></div>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.name.$error.minlength"
+      class        = "help-inline">Name must be longer than {{clientOrmShare.field.model.name.validate.len[0]}} characters</span>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.name.$error.maxlength"
+      class        = "help-inline">Name must be shorter than {{clientOrmShare.field.model.name.validate.len[1]}} characters</span>
+
+  </div>
+</div>
+
+
+<div class="control-group">
+  <label class="control-label">Description</label>
+  <div class="controls">
+    <textarea
+      data-ng-model = "form.description"
+      name          = "description"
+      class         = "large m-wrap"
+      rows          = "3"></textarea>
+  </div>
+</div>
+
+
+
+
+
+
+<div
+  data-ng-class = "{success:formPercentageSliderAdd.leftValue.$valid, error:!formPercentageSliderAdd.leftValue.$valid, 'ng-pristine':formPercentageSliderAdd.leftValue.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Left Value</label>
+  <div class="controls input-icon">
+    <input
+      required
+      class             = "large m-wrap"
+      data-ng-minlength = "{{clientOrmShare.field.model.leftValue.validate.len[0]}}"
+      data-ng-maxlength = "{{clientOrmShare.field.model.leftValue.validate.len[1]}}"
+      data-ng-model     = "form.leftValue"
+      type              = "text"
+      name              = "leftValue">
+
+    <span class="input-success">
+      <i class="icon-ok"></i>
+    </span>
+
+    <span class="input-error">
+      <i class="icon-exclamation-sign"></i>
+    </span>
+
+    <div class="clear"></div>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.leftValue.$error.minlength"
+      class        = "help-inline">Left value name must be longer than {{clientOrmShare.field.model.name.validate.len[0]}} characters</span>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.leftValue.$error.maxlength"
+      class        = "help-inline">Left value name must be shorter than {{clientOrmShare.field.model.name.validate.len[1]}} characters</span>
+
+  </div>
+</div>
+
+
+
+<div
+  data-ng-class = "{success:formPercentageSliderAdd.rightValue.$valid, error:!formPercentageSliderAdd.rightValue.$valid, 'ng-pristine':formPercentageSliderAdd.rightValue.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Right Value</label>
+  <div class="controls input-icon">
+    <input
+      required
+      class             = "large m-wrap"
+      data-ng-minlength = "{{clientOrmShare.field.model.rightValue.validate.len[0]}}"
+      data-ng-maxlength = "{{clientOrmShare.field.model.rightValue.validate.len[1]}}"
+      data-ng-model     = "form.rightValue"
+      type              = "text"
+      name              = "rightValue">
+
+    <span class="input-success">
+      <i class="icon-ok"></i>
+    </span>
+
+    <span class="input-error">
+      <i class="icon-exclamation-sign"></i>
+    </span>
+
+    <div class="clear"></div>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.rightValue.$error.minlength"
+      class        = "help-inline">Left value name must be longer than {{clientOrmShare.field.model.name.validate.len[0]}} characters</span>
+
+    <span
+      data-ng-show = "formPercentageSliderAdd.rightValue.$error.maxlength"
+      class        = "help-inline">Left value name must be shorter than {{clientOrmShare.field.model.name.validate.len[1]}} characters</span>
+
+  </div>
+</div>

@@ -1,0 +1,68 @@
+.portlet.box(data-ng-class   = "{'green sub-portlet':newTemplateForm.$valid, 'grey':newTemplateForm.$invalid}"
+             style           = "display:none;"
+             data-ng-show    = "viewModel.showAddNewTemplate"
+             data-ng-animate = "{show: 'slideDown', hide: 'slideUp'}")
+  .portlet-title
+    h4
+      span New Template
+  .portlet-body.light-grey.form
+    form.horizontal-form(novalidate
+                         name  = "newTemplateForm"
+                         style = "margin:0;")
+      .control-group(data-ng-class = "{success:newTemplateForm.name.$valid, error:!newTemplateForm.name.$valid, 'ng-pristine':newTemplateForm.name.$pristine}")
+        label.control-label Template Name
+        .controls.input-icon
+          input.large.m-wrap(type              = "text"
+                             name              = "name"
+                             data-ng-model     = "viewModel.newTemplateForm.name"
+                             data-ng-minlength = "{{clientOrmShare.template.model.name.validate.len[0]}}"
+                             data-ng-maxlength = "{{clientOrmShare.template.model.name.validate.len[1]}}"
+                             data-unique-field = "{\"resource\": \"template\", \"property\": \"name\"}"
+                             data-required)
+          span.input-success
+            i.icon-ok
+          span.input-error
+            i.icon-exclamation-sign
+          .clear
+          span.help-inline(data-ng-show = "newTemplateForm.name.$error.minlength")
+            | Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters
+          span.help-inline(data-ng-show = "newTemplateForm.name.$error.maxlength")
+            | Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters
+          span.help-inline(data-ng-show = "newTemplateForm.name.$error.uniqueField") A template with the name "{{viewModel.newTemplateForm.name}}" already exists
+
+      //
+        .control-group(data-ng-class = "{success:newTemplateForm.type.$valid, error:!newTemplateForm.type.$valid, 'ng-pristine':newTemplateForm.type.$pristine}")
+          label.control-label Type
+          .controls.input-icon
+
+            select.m-wrap.large(name            = "type"
+                                data-ng-model   = "viewModel.newTemplateForm.type"
+                                data-ng-options = "type for type in clientOrmShare.template.model.type.values"
+                                data-required)
+            .clear
+            span.help-inline(data-ng-show = "newTemplateForm.name.$error.minlength")
+              | Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters
+            span.help-inline(data-ng-show = "newTemplateForm.name.$error.maxlength")
+              | Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters
+            span.help-inline(data-ng-show = "newTemplateForm.name.$error.uniqueField") A template with the name "{{viewModel.newTemplateForm.name}}" already exists
+
+      .form-actions 
+        button.btn.green.pull-right(type             = "submit"
+                                    data-ng-class    = "{true:'black', false:'green'}[viewModel.postNewTemplateSaving]"
+                                    data-ng-disabled = "newTemplateForm.$invalid || viewModel.postNewTemplateSaving"
+                                    data-ng-click    = "viewModel.postNewTemplate()"
+                                    style            = "margin-left:5px;")
+          p(style        = "margin:0;"
+            data-ng-show = "!viewModel.postNewTemplateSaving")
+            i.icon-plus.m-icon-white
+            |&nbsp;Add
+          p(style        = "margin:0;"
+            data-ng-show = "viewModel.postNewTemplateSaving")
+            i.icon-cog.icon-spin
+            |&nbsp;Saving...
+
+
+        button.btn.red.pull-right(data-ng-click = "viewModel.clearNewTemplateForm()")
+          i.icon-remove.m-icon-white
+          |&nbsp;Cancel
+

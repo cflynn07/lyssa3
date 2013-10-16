@@ -1,0 +1,52 @@
+div
+  .portlet.box.red.sub-portlet(data-ng-hide != "(resourcePool['<%= templateUid %>'].revisions | toArray | filter:{finalized:'false'}).length === 0", style="margin-bottom:5px;")
+    .portlet-title
+      h4
+        span
+          strong Unsaved
+          | Revisions
+    .portlet-body(style="padding:0;")
+      table.table.table-striped.table-bordered.table-advance.condensed-data-table
+        thead
+          tr
+            th Owner
+            th Date
+            th
+        tbody
+          tr(data-ng-repeat != "value in resourcePool['<%= templateUid %>'].revisions | toArray | filter:{finalized:'false'}")
+            td
+              | {{resourcePool[value.employeeUid].firstName + ' ' + resourcePool[value.employeeUid].lastName}}
+            td
+              | {{value.createdAt | toArray | date:'short' }}
+            td
+              .inline-content(style="text-align:right;")
+                a.btn.mini(data-ng-class != "{true:'black', false:'green'}[viewModel.routeParams.revisionUid == value.uid]", href="{{ '#' + viewRoot }}/{{value.templateUid}}/{{value.uid}}")
+                  span(data-ng-show = "value.finalized") View
+                  span(data-ng-show = "!value.finalized") Edit
+                  i.halflings-icon.white.chevron-left(data-ng-hide="viewModel.routeParams.revisionUid == value.uid", style="width:11px;")
+                  i.halflings-icon.white.chevron-right(data-ng-show="viewModel.routeParams.revisionUid == value.uid", style="width:11px;")
+  .portlet.box.blue.sub-portlet(data-ng-hide != "(resourcePool['<%= templateUid %>'].revisions | toArray | filter:{finalized:'false'}).length > 0", style="margin-bottom:5px;")
+    .portlet-title
+      h4
+        span Revisions ({{ (resourcePool['<%= templateUid %>'].revisions | toArray | filter:{finalized:true}).length }})
+    .portlet-body(style=  "padding:0;")
+      table.table.table-striped.table-bordered.table-advance.condensed-data-table
+        thead
+          tr
+            th Owner
+            th Date
+            th
+        tbody
+          tr(data-ng-repeat != "value in resourcePool['<%= templateUid %>'].revisions | toArray | filter:{finalized:true}")
+            td
+              | {{resourcePool[value.employeeUid].firstName + ' ' + resourcePool[value.employeeUid].lastName}}
+            td
+              | {{value.createdAt | toArray | date:'short' }}
+            td
+              .inline-content(style="text-align:right;")
+                a.btn.mini.purple(popover="{{ value.changeSummary }}", popover-trigger="mouseenter") Change Summary
+                a.btn.mini(data-ng-class="{true:'black', false:'blue'}[viewModel.routeParams.revisionUid == value.uid]", href="{{ '#' + viewRoot}}/{{value.templateUid}}/{{value.uid}}")
+                  span(data-ng-show="value.finalized") View
+                  span(data-ng-show="!value.finalized") Edit
+                  i.halflings-icon.white.chevron-left(data-ng-hide="viewModel.routeParams.revisionUid == value.uid", style="width:11px;")
+                  i.halflings-icon.white.chevron-right(data-ng-show="viewModel.routeParams.revisionUid == value.uid", style="width:11px;")

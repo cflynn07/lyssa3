@@ -1,0 +1,17 @@
+.inline-content.inline-content-responsive(style="text-align:center;")
+  .btn-group(style="margin-bottom:0px !important; text-align:left;")
+    a.btn(data-ng-class="{true:'black', false:'blue'}[viewModel.currentDictionaryUid == '<%= full.uid %>']", href="#<%= viewRoot %>/<%= full.uid %>")
+      | Edit
+      i.m-icon-swapright.m-icon-white(data-ng-hide="viewModel.currentDictionaryUid == '<%= full.uid %>'")
+      i.m-icon-swapleft.m-icon-white(data-ng-show="viewModel.currentDictionaryUid == '<%= full.uid %>'")
+    button.btn.dropdown-toggle
+      span.caret
+    ul.dropdown-menu.pull-right
+      li
+        a(href="#")
+          i.icon-pencil
+          | Rename
+      li
+        a(data-ng-click="$parent.viewModel.deleteConfirmDialogDictionary('<%= full.uid %>')")
+          i.icon-trash
+          | Archive

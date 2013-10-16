@@ -1,0 +1,35 @@
+
+<li data-ng-class="{true:'active'}[locationHash == '/admin/themis']" data-ng-click="setCurrentActiveMenuItem('')"><a href="#/admin/themis"><i class="icon-home"></i><span class="title">Dashboard</span><span class="selected"></span></a></li>
+<li data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/exercises') === 0]" data-ng-click="setCurrentActiveMenuItem('')"><a href="#/admin/themis/exercises"><i class="icon-table"></i><span class="title">Exercises</span><span class="selected"></span></a></li>
+<li data-ng-class="{ 'active':(locationHash.indexOf('/admin/themis/templates') === 0), 'open':(currentActiveMenuItem == 'templates') }" data-ng-click="setCurrentActiveMenuItem('templates')">
+  <!--a(href = "#/admin/themis/templates")--><a href="#/admin/themis/templates"><i class="icon-cogs"></i><span class="title">Templates</span>
+    <!--span.arrow(data-ng-class = "{true:'open'}[currentActiveMenuItem == 'templates' || locationHash.indexOf('/admin/themis/templates') === 0]")--><span class="selected"></span></a>
+  <!--
+  <ul data-ng-show="locationHash.indexOf('/admin/themis/templates') === 0 || currentActiveMenuItem == 'templates'" data-ng-animate="{show:'slideDown', hide:'slideUp'}" class="sub-menu">
+    <li><a data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/templates/full') === 0]" data-ng-click="setCurrentActiveMenuItem('templates')" href="#/admin/themis/templates/full">Full Exercises</a></li>
+    <li><a data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/templates/mini') === 0]" data-ng-click="setCurrentActiveMenuItem('templates')" href="#/admin/themis/templates/mini">Mini Exercises</a></li>
+  </ul>
+  -->
+</li>
+<!--
+<li data-ng-class="{ 'active':(locationHash.indexOf('/admin/themis/reports') === 0), 'open':(currentActiveMenuItem == 'reports') }" data-ng-click="setCurrentActiveMenuItem('reports')"><a><i class="icon-bar-chart"></i><span class="title">Reports</span><span data-ng-class="{true:'open'}[currentActiveMenuItem == 'reports' || locationHash.indexOf('/admin/themis/reports') === 0]" class="arrow"></span><span class="selected"></span></a>
+  <ul data-ng-show="locationHash.indexOf('/admin/themis/reports') === 0 || currentActiveMenuItem == 'reports'" data-ng-animate="{show:'slideDown', hide:'slideUp'}" class="sub-menu">
+    <li><a data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/reports/timeline') === 0]" data-ng-click="setCurrentActiveMenuItem('reports')" href="#/admin/themis/reports/timeline">Timeline</a></li>
+  </ul>
+</li>
+-->
+<!--
+<li data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/repository') === 0]" data-ng-click="setCurrentActiveMenuItem('')"><a href="#/admin/themis/repository"><i class="icon-table"></i><span class="title">Repository</span><span class="selected"></span></a></li>
+-->
+<li data-ng-class="{ 'active':(locationHash.indexOf('/admin/themis/settings') === 0), 'open':(currentActiveMenuItem == 'settings') }" data-ng-click="setCurrentActiveMenuItem('settings')">
+  <!--a(href = "#/admin/themis/settings")--><a><i class="icon-user"></i><span class="title">Settings</span><span data-ng-class="{true:'open'}[currentActiveMenuItem == 'settings' || locationHash.indexOf('/admin/themis/settings') === 0]" class="arrow"></span><span class="selected"></span></a>
+  <ul data-ng-show="locationHash.indexOf('/admin/themis/settings') === 0 || currentActiveMenuItem == 'settings'" data-ng-animate="{show:'slideDown', hide:'slideUp'}" class="sub-menu">
+    <li><a data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/settings/dictionaries') === 0]" data-ng-click="setCurrentActiveMenuItem('settings')" href="#/admin/themis/settings/dictionaries">Dictionaries</a></li>
+    <li><a data-ng-class="{true:'active'}[locationHash.indexOf('/admin/themis/settings/employees') === 0]" data-ng-click="setCurrentActiveMenuItem('settings')" href="#/admin/themis/settings/employees">Employees</a></li>
+  </ul>
+</li>
+<li>
+  <!-- BEGIN SIDEBAR TOGGLER BUTTON-->
+  <div data-ng-click="sidebarClosedToggle()" class="sidebar-toggler hidden-phone"></div>
+  <!-- BEGIN SIDEBAR TOGGLER BUTTON--><br/>
+</li>

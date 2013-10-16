@@ -1,0 +1,29 @@
+.portlet.box.grey(data-ng-controller = "ControllerWidgetActivityFeed"
+                  data-animate-in)
+  .portlet-title
+    h4
+      span Recent Activity
+  .portlet-body(style = "max-height:400px; overflow-y:scroll;")
+    .progress.progress-striped.active(data-ng-hide = "rootActivityFeed !== false")
+      .bar(style = "width: 100%;")
+    ul.feeds
+      li(data-ng-repeat = "(key, value) in rootActivityFeed | toArray | orderBy:'createdAt':true"
+         class          = "animated fadeInDown")
+
+        div(data-ng-animate = ""            
+            data-ng-show    = "value.type == 'createDictionary'"
+            data-ng-include = "'viewPartialActivityFeedCreateDictionary'")
+
+        div(data-ng-animate = ""
+            data-ng-show    = "value.type == 'createEmployee'"
+            data-ng-include = "'viewPartialActivityFeedCreateEmployee'")
+
+        div(data-ng-animate = ""
+            data-ng-show    = "value.type == 'createEvent'"
+            data-ng-include = "'viewPartialActivityFeedCreateEvent'")
+
+        div(data-ng-animate = ""
+            data-ng-show    = "value.type == 'eventInitialized'"
+            data-ng-include = "'viewPartialActivityFeedEventInitialized'")
+        
+  // portlet-body

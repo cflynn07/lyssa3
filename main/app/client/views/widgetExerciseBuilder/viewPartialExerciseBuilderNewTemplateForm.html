@@ -1,0 +1,33 @@
+
+<div data-ng-class="{'green sub-portlet':newTemplateForm.$valid, 'grey':newTemplateForm.$invalid}" style="display:none;" data-ng-show="viewModel.showAddNewTemplate" data-ng-animate="{show: 'slideDown', hide: 'slideUp'}" class="portlet box">
+  <div class="portlet-title">
+    <h4><span>New Template</span></h4>
+  </div>
+  <div class="portlet-body light-grey form">
+    <form novalidate="novalidate" name="newTemplateForm" style="margin:0;" class="horizontal-form">
+      <div data-ng-class="{success:newTemplateForm.name.$valid, error:!newTemplateForm.name.$valid, 'ng-pristine':newTemplateForm.name.$pristine}" class="control-group">
+        <label class="control-label">Template Name</label>
+        <div class="controls input-icon">
+          <input type="text" name="name" data-ng-model="viewModel.newTemplateForm.name" data-ng-minlength="{{clientOrmShare.template.model.name.validate.len[0]}}" data-ng-maxlength="{{clientOrmShare.template.model.name.validate.len[1]}}" data-unique-field="{&quot;resource&quot;: &quot;template&quot;, &quot;property&quot;: &quot;name&quot;}" data-required="data-required" class="large m-wrap"/><span class="input-success"><i class="icon-ok"></i></span><span class="input-error"><i class="icon-exclamation-sign"></i></span>
+          <div class="clear"></div><span data-ng-show="newTemplateForm.name.$error.minlength" class="help-inline">Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters</span><span data-ng-show="newTemplateForm.name.$error.maxlength" class="help-inline">Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters</span><span data-ng-show="newTemplateForm.name.$error.uniqueField" class="help-inline">A template with the name "{{viewModel.newTemplateForm.name}}" already exists</span>
+        </div>
+      </div>
+      <!--
+      <div data-ng-class="{success:newTemplateForm.type.$valid, error:!newTemplateForm.type.$valid, 'ng-pristine':newTemplateForm.type.$pristine}" class="control-group">
+        <label class="control-label">Type</label>
+        <div class="controls input-icon">
+          <select name="type" data-ng-model="viewModel.newTemplateForm.type" data-ng-options="type for type in clientOrmShare.template.model.type.values" data-required="data-required" class="m-wrap large"></select>
+          <div class="clear"></div><span data-ng-show="newTemplateForm.name.$error.minlength" class="help-inline">Name must be longer than {{clientOrmShare.template.model.name.validate.len[0]}} characters</span><span data-ng-show="newTemplateForm.name.$error.maxlength" class="help-inline">Name must be shorter than {{clientOrmShare.template.model.name.validate.len[1]}} characters</span><span data-ng-show="newTemplateForm.name.$error.uniqueField" class="help-inline">A template with the name "{{viewModel.newTemplateForm.name}}" already exists</span>
+        </div>
+      </div>
+      -->
+      <div class="form-actions"> 
+        <button type="submit" data-ng-class="{true:'black', false:'green'}[viewModel.postNewTemplateSaving]" data-ng-disabled="newTemplateForm.$invalid || viewModel.postNewTemplateSaving" data-ng-click="viewModel.postNewTemplate()" style="margin-left:5px;" class="btn green pull-right">
+          <p style="margin:0;" data-ng-show="!viewModel.postNewTemplateSaving"><i class="icon-plus m-icon-white"></i>&nbsp;Add</p>
+          <p style="margin:0;" data-ng-show="viewModel.postNewTemplateSaving"><i class="icon-cog icon-spin"></i>&nbsp;Saving...</p>
+        </button>
+        <button data-ng-click="viewModel.clearNewTemplateForm()" class="btn red pull-right"><i class="icon-remove m-icon-white"></i>&nbsp;Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

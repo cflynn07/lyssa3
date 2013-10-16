@@ -1,0 +1,7 @@
+div(data-ng-form="", name="subForm")
+  input.span6.m-wrap(type="text", data-ng-init="viewModel.fields[field.uid] = subForm", name="subField", data-ng-model="viewModel.exerciseQuizForm[field.uid]", required="", data-ng-minlength="{{ field.openResponseMinLength || 0 }}", data-ng-maxlength="{{ field.openResponseMaxLength || 100 }}")
+  .clearfix
+  span.help-inline(data-ng-show="viewModel.fields[field.uid].$error.minlength")
+    | Answer must be longer than {{ field.openResponseMinLength || 0 }} characters
+  span.help-inline(data-ng-show="viewModel.fields[field.uid].$error.maxlength")
+    | Answer must be shorter than {{ field.openResponseMaxLength || 100 }} characters

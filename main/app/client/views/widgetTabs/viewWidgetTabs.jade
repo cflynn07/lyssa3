@@ -1,0 +1,22 @@
+.widget-themis-finish.portlet.box.blue(data-animate-in
+                                       data-ng-controller = "ControllerWidgetTabs")
+  .portlet-title
+    h4
+      span 
+  .portlet-body.light-grey
+
+    .row-fluid
+      .span12
+
+        .tabbable.tabbable-custom(data-ng-init = "viewModel.activeTab = viewModel.data.tabs[0].widgetName")
+          ul.nav.nav-tabs 
+            li(data-ng-repeat = "widget in viewModel.data.tabs"
+               data-ng-class  = "{true: 'active'}[viewModel.activeTab == widget.widgetName]")
+              a(data-ng-click = "viewModel.activeTab = widget.widgetName") {{ widget.name }}
+
+          .tab-content
+            .tab-pane(data-ng-repeat = "widget in viewModel.data.tabs"
+                      data-ng-class  = "{true: 'active'}[viewModel.activeTab == widget.widgetName]")
+              .no-wrapper
+                div(data-ng-include = "widget.widgetName")
+          

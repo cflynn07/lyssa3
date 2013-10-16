@@ -1,0 +1,169 @@
+ <div
+  data-ng-class = "{success:formSelectIndividualAdd.name.$valid, error:!formSelectIndividualAdd.name.$valid, 'ng-pristine':formSelectIndividualAdd.name.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Name <span class="required">*</span></label>
+  <div class="controls input-icon">
+    <input
+      required
+      class             = "large m-wrap"
+      data-ng-minlength = "{{clientOrmShare.field.model.name.validate.len[0]}}"
+      data-ng-maxlength = "{{clientOrmShare.field.model.name.validate.len[1]}}"
+      data-ng-model     = "form.name"
+      type              = "text"
+      name              = "name">
+
+    <span class="input-success">
+      <i class="icon-ok"></i>
+    </span>
+
+    <span class="input-error">
+      <i class="icon-exclamation-sign"></i>
+    </span>
+
+    <div class="clear"></div>
+
+    <span
+      data-ng-show = "formSelectIndividualAdd.name.$error.minlength"
+      class        = "help-inline">Name must be longer than {{clientOrmShare.field.model.name.validate.len[0]}} characters</span>
+
+    <span
+      data-ng-show = "formSelectIndividualAdd.name.$error.maxlength"
+      class        = "help-inline">Name must be shorter than {{clientOrmShare.field.model.name.validate.len[1]}} characters</span>
+
+  </div>
+</div>
+
+
+<div class="control-group">
+  <label class="control-label">Description</label>
+  <div class="controls">
+    <textarea
+      data-ng-model = "form.description"
+      name          = "description"
+      class         = "large m-wrap"
+      rows          = "3"></textarea>
+  </div>
+</div>
+
+<div
+  data-ng-class = "{success:formSelectIndividualAdd.dictionaryUid.$valid, error:!formSelectIndividualAdd.dictionaryUid.$valid, 'ng-pristine':formSelectIndividualAdd.dictionaryUid.$pristine}"
+  class         = "control-group">
+  <label class="control-label">Dictionary <span class="required">*</span></label>
+  <div class="controls">
+
+
+    <p
+      class        = "DTSelectedItemInfo"
+      data-ng-show = "form.dictionaryUid">
+      <span>
+        <span class="input-success color-green">
+          <i class="icon-ok"></i>
+        </span>
+        {{resourcePool[form.dictionaryUid].name}}
+      </span>
+      <br><a class="btn red mini" data-ng-click = "form.dictionaryUid = false">Cancel Selection</a>
+    </p>
+
+
+    <input
+      required
+      name          = "dictionaryUid"
+      data-ng-model = "form.dictionaryUid"
+      data-ng-bind  = "form.dictionaryUid"
+      data-ng-show  = "false"
+      type          = "text">
+
+
+    <div
+      data-ng-hide = "form.dictionaryUid"
+      style        = "color:#000; border:1px solid #999;"
+      class        = "">
+
+      <table
+        class                   = "table table-striped table-hover table-bordered dataTable"
+        data-data-table         = "dictionaryListDT.options"
+        ao-column-defs          = "dictionaryListDT.columnDefs"
+        data-parent-model       = "viewModel"
+        update-on-resource-post = "dictionary">
+        <thead>
+          <tr>
+            <th class = "sorting"></th>
+            <th class = "sorting">Name</th>
+          </tr>
+        </thead>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div
+  data-ng-show  = "form.dictionaryUid"
+  data-ng-class = "{success:formSelectIndividualAdd.fieldCorrectDictionaryItems.$valid, error:!formSelectIndividualAdd.fieldCorrectDictionaryItems.$valid, 'ng-pristine':formSelectIndividualAdd.fieldCorrectDictionaryItems.$pristine}"
+  class         = "control-group">
+  <label class="control-label">"Correct" Items <span class="required">*</span></label>
+
+
+  <input
+    required
+    name          = "fieldCorrectDictionaryItems"
+    data-ng-model = "form.fieldCorrectDictionaryItems"
+    data-ng-bind  = "form.fieldCorrectDictionaryItems"
+    data-ng-show  = "false"
+    type          = "text">
+
+
+  <div class="controls">
+
+
+    <div
+      data-ng-class = "{true:'span12 no-second-box-margin', false:'span8'}[!form.fieldCorrectDictionaryItems.length]"
+      class         = "">
+      <div
+        style        = "color:#000; border:1px solid #999;"
+        class        = "">
+        <table
+          class                   = "table table-striped table-hover table-bordered dataTable"
+          data-data-table         = "dictionaryItemsListDT.options"
+          ao-column-defs          = "dictionaryItemsListDT.columnDefs"
+          data-parent-model       = "viewModel"
+          data-update-watch       = "form.dictionaryUid"
+          update-on-resource-post = "dictionaryItem">
+          <thead>
+            <tr>
+              <th class = "sorting"></th>
+              <th class = "sorting">Name</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div><!-- span6 -->
+
+
+    <div
+      data-ng-show = "form.fieldCorrectDictionaryItems.length"
+      class        = "span4 box template-info-box fade in">
+      <p style = "margin-bottom:5px; font-size:16px;">
+        <h4><span>Selected: {{form.fieldCorrectDictionaryItems.length || 0}}</span></h4>
+        <span style="margin-bottom:4px;">
+
+          <ul>
+            <li data-ng-repeat="uid in form.fieldCorrectDictionaryItems">
+              {{resourcePool[uid].name}}<br>
+              <a
+                data-ng-click = "removeFieldCorrectDictionaryItems(uid)"
+                class         = "btn red mini">Remove</a>
+            </li>
+          </ul>
+
+        </span>
+      </p>
+    </div><!-- span6 -->
+
+
+
+  </div>
+</div>

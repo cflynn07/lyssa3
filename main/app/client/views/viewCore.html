@@ -1,0 +1,12 @@
+
+<!-- HEADER GOES HERE-->
+<div style="z-index:1001;" data-ng-controller="ControllerWidgetCoreHeader" data-ng-include="'viewWidgetCoreHeader'" class="header navbar navbar-inverse navbar-fixed-top"></div>
+<div data-ng-class="{'sidebar-closed':sidebarClosed}" class="page-container row-fluid">
+  <!-- LEFT MENU GOES HERE-->
+  <div data-ng-hide="quizMode" data-ng-class="{'in':topBarOpen}" style="z-index:1000;" data-ng-controller="ControllerWidgetCoreLeftMenu" data-ng-include="'viewWidgetCoreLeftMenu'" class="page-sidebar nav-collapse collapse"></div>
+  <div data-ng-class="{'page-content-quiz-mode':quizMode}" class="page-content">
+    <!-- PAGE CONTENT GOES HERE-->
+    <div data-ng-controller="ControllerCoreWidgets" data-ng-include="'viewCoreWidgets'" class="container-fluid"></div>
+  </div>
+</div>
+<div data-ng-show="false" data-ng-controller="ControllerWidgetCoreFooter" data-ng-include="'viewWidgetCoreFooter'" class="footer"></div>

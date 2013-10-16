@@ -1,0 +1,54 @@
+
+<div data-ng-controller="ControllerWidgetScheduler">
+  <div data-ng-show="!viewModel.routeParams.eventUid">
+    <div style="margin-bottom:10px;" class="row-fluid">
+      <div class="span3">
+        <div class="span6">
+          <button data-ng-hide="viewModel.showNewExerciseForm" data-ng-animate="{show: 'fadeIn', hide: 'fadeOut'}" data-ng-click="viewModel.showNewExerciseForm = true" class="btn green btn-block"><i class="icon-plus m-icon-white"></i>&nbsp;New Exercise</button>
+        </div>
+        <div data-ng-init="activeViewType = 'calendar'" class="span6 pull-right">
+          <button data-ng-show="activeViewType == 'calendar'" data-ng-click="activeViewType = 'list'" class="btn blue btn-block"><i class="icon-list"></i>&nbsp;List</button>
+          <button data-ng-show="activeViewType == 'list'" data-ng-click="activeViewType = 'calendar'" style="margin-top:0;" class="btn blue btn-block"><i class="icon-calendar"></i>&nbsp;Calendar  </button>
+        </div>
+      </div>
+    </div>
+    <div style="display:none;" data-ng-animate="{show:'slideDown', hide:'slideUp'}" data-ng-show="viewModel.showNewExerciseForm" data-ng-include="'viewPartialSchedulerAddExerciseForm'" class="row-fluid"></div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div data-ng-show="activeViewType == 'list'" style="margin-bottom:0;" data-animate-in="data-animate-in" class="portlet box grey">
+          <div class="portlet-title">
+            <h4><span> <i style="color:#FFF;" class="icon-calendar"></i>List</span></h4>
+          </div>
+          <div style="" class="portlet-body no-wrapper">
+            <div data-ng-include="'viewWidgetTimeline'"></div>
+          </div>
+        </div>
+        <div data-ng-show="activeViewType == 'calendar'" style="margin-bottom:0;" data-animate-in="data-animate-in" class="portlet box grey">
+          <div class="portlet-title">
+            <h4><span> <i style="color:#FFF;" class="icon-list m-icon-white"></i>Calendar</span></h4>
+          </div>
+          <div style="" class="portlet-body">
+            <div data-calendar="data-calendar" data-activate-watch="!(viewModel.routeParams.eventUid || viewModel.showNewExerciseForm)" data-options="viewModel.fullCalendarOptions" data-refetch-on-post="event" data-refetch-on-put="event" data-update-on-change="viewModel.fullCalendarOptions.changeIncrementor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-ng-show="viewModel.routeParams.eventUid">
+    <div class="row-fluid">
+      <div style="padding-bottom:10px;" class="span3">     
+        <div class="span6"><a href="{{ '#' + viewRoot }}" class="btn blue"><i class="icon-arrow-left m-icon-white"></i>&nbsp;Exercises</a></div>
+      </div>
+    </div>
+    <div class="row-fluid"> 
+      <div class="span12">
+        <div style="margin-bottom:0;" class="portlet box grey">
+          <div class="portlet-title"> 
+            <h4> <span>Exercise </span></h4>
+          </div>
+          <div class="portlet-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

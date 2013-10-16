@@ -1,0 +1,79 @@
+
+<div data-animate-in="" data-ng-controller="ControllerWidgetQuizExerciseSubmitter" class="widget-themis-finish portlet box blue">
+  <div class="portlet-title">
+    <h4><span>Mini Exercise</span></h4>
+  </div>
+  <!-- portlet-title-->
+  <div class="portlet-body form">
+    <div class="box template-info-box fade in">
+      <table class="detail-table">
+        <tbody>
+          <tr>
+            <td class="detail-head">Exercise Name:</td>
+            <td>{{ resourcePool[viewModel.routeParams.eventParticipantUid].event.name }}</td>
+          </tr>
+          <tr>
+            <td class="detail-head">Start Date/Time:</td>
+            <td>
+              {{ resourcePool[viewModel.routeParams.eventParticipantUid].event.dateTime | date:'short' }}
+              ({{ resourcePool[viewModel.routeParams.eventParticipantUid].event.dateTime | fromNow }})
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-head">Scheduled By:</td>
+            <td>{{ resourcePool[resourcePool[viewModel.routeParams.eventParticipantUid].event.employee.uid].firstName }} {{ resourcePool[resourcePool[viewModel.routeParams.eventParticipantUid].event.employee.uid].lastName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- template-info-box-->
+    <form name="exerciseQuizForm" novalidate="" class="form-horizontal form-bordered form-row-stripped">
+      <div class="form-wizard">
+        <div class="navbar steps">
+          <div class="navbar-inner">
+            <ul class="row-fluid nav nav-pills">
+              <li data-ng-repeat="(key, group) in viewModel.revision.groups | toArray | deleted | orderBy:'ordinal'" data-ng-class="{true:'active'}[viewModel.activeRevisionGroupUid == group.uid]" class="span3"><a href="#tab1" data-toggle="tab" class="step"><span class="number">{{ key + 1 }}</span><span class="desc"><i class="icon-ok"></i>{{ group.name }}</span></a></li>
+            </ul>
+            <!-- row-fluid-->
+          </div>
+          <!-- navbar-inner-->
+        </div>
+        <!-- navbar steps-->
+        <div class="progress progress-success progress-striped">
+          <div style="width: 25%;" class="bar"></div>
+        </div>
+        <div style="border:1px solid #CCC; margin-bottom:10px;" class="tab-content">
+          <div data-ng-repeat="group in viewModel.revision.groups | toArray | deleted | orderBy:'ordinal'" data-ng-class="{true:'active'}[viewModel.activeRevisionGroupUid == group.uid]" class="tab-pane">
+            <h3 style="padding-left:10px;" class="block">{{ group.name }}</h3>
+            <div data-ng-class="{success:viewModel.fields[field.uid].$valid, error:!viewModel.fields[field.uid].$valid, 'ng-pristine':viewModel.fields[field.uid].$pristine}" data-ng-repeat="field in resourcePool[group.uid].fields | deleted | orderBy:'ordinal'" class="control-group">
+              <label class="control-label">{{ field.name }}</label>
+              <div class="controls">
+                <div data-ng-switch="field.type">
+                  <div data-ng-switch-when="openResponse" data-ng-include="'viewPartialQuizExerciseSubmitterOpenResponse'"></div>
+                  <div data-ng-switch-when="selectIndividual" data-ng-include="'viewPartialQuizExerciseSubmitterSelectIndividual'"></div>
+                  <div data-ng-switch-when="selectMultiple" data-ng-include="'viewPartialQuizExerciseSubmitterSelectMultiple'"></div>
+                  <div data-ng-switch-when="yesNo" data-ng-include="'viewPartialQuizExerciseSubmitterYesNo'"></div>
+                  <div data-ng-switch-when="slider" data-ng-include="'viewPartialQuizExerciseSubmitterSlider'"></div>
+                </div>
+                <!-- data-ng-switch field.type-->
+                <div class="clearfix"></div>
+              </div>
+              <!-- controls-->
+            </div>
+            <!-- control-group-->
+          </div>
+          <!-- tab-pane-->
+        </div>
+        <!-- tab-content-->
+        <div class="form-actions clearfix">
+          <button data-ng-click="viewModel.decrementActiveRevisionGroup()" class="btn"><i class="m-icon-swapleft"></i>Back</button>
+          <button data-ng-disabled="!viewModel.isGroupValidContinue(viewModel.activeRevisionGroupUid)" data-ng-click="viewModel.incrementActiveRevisionGroup()" class="btn blue">Continue<i class="m-icon-swapright m-icon-white"></i></button>
+          <button class="btn green">Submit<i class="m-icon-swapright m-icon-white"></i></button>
+        </div>
+        <!-- form-actions-->
+      </div>
+      <!-- form-wizard-->
+    </form>
+  </div>
+  <!-- portlet-body-->
+</div>

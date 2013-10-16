@@ -1,0 +1,9 @@
+
+<div class="portlet box">.{{color}}(data-ng-class="{'true': 'widget-themis-finish'}[widgetThemis]")
+  <div class="portlet-title">
+    <h4><span>{{title}}</span></h4>
+    <div class="actions"><a id="tree_1_collapse" data-ng-show="false" href="javascript:;" class="btn green">New</a></div>
+    <div data-ng-hide="true" class="tools"><a href="" data-ng-click="toggle()" data-ng-class="{true: 'expand', false: 'collapse'}[collapsed]"></a><a href="" data-ng-click="reload()" class="reload"></a></div>
+  </div>
+  <div data-ng-class="{true: 'hidden', false: ''}[collapsed]" data-ng-transclude="" class="portlet-body light-grey"></div>
+</div>

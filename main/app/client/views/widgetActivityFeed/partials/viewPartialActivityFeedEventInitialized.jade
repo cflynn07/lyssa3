@@ -1,0 +1,15 @@
+.col1
+  .cont
+    .cont-col1
+      .label.label-success
+        i.icon-calendar
+    .cont-col2
+      .desc
+        h4(style="margin:0;") Exercise "{{ resourcePool[value.event.uid].name }}" began
+        span.date-color {{ resourcePool[value.uid].createdAt | fromNow }}
+        div(style="margin-top:5px;")
+          a.color-blue(href="#/admin/themis/schedule/{{ value.eventUid }}") {{ resourcePool[value.eventUid].name }}
+          | began at {{ resourcePool[value.eventUid].dateTime | date:'short' }}
+.col2
+  .date
+    | {{ resourcePool[value.uid].createdAt | date:'short' }}

@@ -1,0 +1,17 @@
+.inline-content.inline-content-responsive(style = "text-align:center;")
+  .btn-group(style = "margin-bottom:0px !important; text-align:left;")    
+
+    a.btn(href          != "{{'#' + viewRoot}}/{{ resourcePool['<%= templateUid %>'].revisions[0].uid }}"
+          data-ng-class != "{true:'black', false:'blue'}[viewModel.routeParams.templateUid == '<%= templateUid %>']")
+      | Edit&nbsp;
+      i.m-icon-swapleft.m-icon-white(style = "display:none;")
+      i.m-icon-swapright.m-icon-white
+
+    button.btn.dropdown-toggle(data-toggle = "dropdown")
+      span.caret
+    ul.dropdown-menu.pull-right
+
+      li
+        a.color-red(data-ng-click != "$parent.viewModel.deleteConfirmDialogTemplate('<%= templateUid %>')")
+          i.icon-trash
+          | Archive

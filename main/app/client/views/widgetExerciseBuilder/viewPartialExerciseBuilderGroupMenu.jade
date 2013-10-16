@@ -1,0 +1,51 @@
+.navbar-inner(style="border-bottom: 2px solid #094AB2")
+  .container
+    span.pull-right
+      a.brand(style="font-weight:500; color:#4d90fe;", data-ng-hide="nameEditing", data-ng-click="nameEditing = true", href="") {{ group.name }}
+      ul.nav(data-ng-show="nameEditing")
+        li
+          a(data-ng-disabled="groupNameEditingForm.$invalid", data-ng-click="nameEditing = viewModel.putGroup(group.uid)", href="") Save
+      form.navbar-search(name="groupNameEditingForm", data-ng-show="nameEditing", novalidate="")
+        input.search-query.span2(type="text", name="groupName", data-ng-model="group.name", style="width:100%;", placeholder="")
+    .nav-collapse.collapse.navbar-responsive-collapse
+      ul.nav
+        li(data-ng-hide="true", style="border-right:2px solid #094AB2;")
+          a(style="background-color:#4d90fe; color:#FFF !important;", href="#") Link
+        li.dropdown(style="background-color:#4d90fe;")
+          a.dropdown-toggle(href="#", style="color:#FFF;", data-toggle="dropdown")
+            | Group Options
+            i.icon-angle-down(style="color:#FFF;")
+          ul.dropdown-menu
+            li
+              a(data-ng-click="nameEditing=true;", href="")
+                i.icon-pencil
+                | Edit
+              a(data-ng-click="viewModel.moveGroup('up')", href="")
+                i.m-icon-swapup
+                | Move Up
+              a(data-ng-click="viewModel.moveGroup('down')", href="")
+                i.m-icon-swapdown
+                | Move Down
+              a.color-red(data-ng-click="viewModel.deleteGroup(group.uid)", href="")
+                i.icon-trash
+                | Archive Group
+            li.dropdown-submenu.bootstrap-menu-bar
+              a(data-ng-click="", href="") Add Question
+              ul.dropdown-menu
+                li(data-ng-hide="resourcePool[routeParams.templateUid].type == 'mini'")
+                  a(data-ng-click="viewModel.showAddNewField_OpenType = 'OpenResponse'")
+                    | Open Response
+                li
+                  a(data-ng-click="viewModel.showAddNewField_OpenType = 'SelectIndividual'")
+                    | Select Individual
+                li
+                  a(data-ng-click="viewModel.showAddNewField_OpenType = 'SelectMultiple'")
+                    | Select Multiple
+                li
+                  a(data-ng-click="viewModel.showAddNewField_OpenType = 'YesNo'")
+                    | Yes / No
+                li(data-ng-hide="resourcePool[routeParams.templateUid].type == 'mini'")
+                  a(data-ng-click="viewModel.showAddNewField_OpenType = 'PercentageSlider'")
+                    | Percentage Slider
+    // /.nav-collapse
+// /navbar-inner

@@ -1,0 +1,179 @@
+form.horizontal-form(name       = "newEmployeeManualAddForm"
+                     novalidate)
+  h3.form-section Employee Info
+  .row-fluid
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.firstName.$valid, error:!newEmployeeManualAddForm.firstName.$valid, 'ng-pristine':newEmployeeManualAddForm.firstName.$pristine}")
+        label.control-label(for = "firstName") First Name
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              required
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.firstName"
+                              data-ng-minlength = "{{clientOrmShare.employee.model.firstName.validate.len[0]}}"
+                              data-ng-maxlength = "{{clientOrmShare.employee.model.firstName.validate.len[1]}}"
+                              name              = "firstName"
+                              placeholder       = "Jane")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.firstName.$dirty && newEmployeeManualAddForm.firstName.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.firstName.$dirty && newEmployeeManualAddForm.firstName.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.firstName.$error.minlength")
+            | First name must be longer than {{clientOrmShare.employee.model.firstName.validate.len[0]}} characters
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.firstName.$error.maxlength")
+            | First name must be shorter than {{clientOrmShare.employee.model.firstName.validate.len[1]}} characters
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.lastName.$valid, error:!newEmployeeManualAddForm.lastName.$valid, 'ng-pristine':newEmployeeManualAddForm.lastName.$pristine}")
+        label.control-label(for = "lastName") Last Name
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              required
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.lastName"
+                              data-ng-minlength = "{{clientOrmShare.employee.model.lastName.validate.len[0]}}"
+                              data-ng-maxlength = "{{clientOrmShare.employee.model.lastName.validate.len[1]}}"
+                              name              = "lastName"
+                              placeholder       = "Doe")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.lastName.$dirty && newEmployeeManualAddForm.lastName.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.lastName.$dirty && newEmployeeManualAddForm.lastName.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.lastName.$error.minlength")
+            | Last name must be longer than {{clientOrmShare.employee.model.lastName.validate.len[0]}} characters
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.lastName.$error.maxlength")
+            | Last name must be shorter than {{clientOrmShare.employee.model.lastName.validate.len[1]}} characters
+
+  .row-fluid
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.email.$valid, error:!newEmployeeManualAddForm.email.$valid, 'ng-pristine':newEmployeeManualAddForm.email.$pristine}")
+        label.control-label(for = "email") Email
+        .controls.input-icon
+          input.m-wrap.span10(type              = "email"
+                              required
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.email"
+                              data-unique-field = "{\"resource\": \"employee\", \"property\": \"email\"}"
+                              name              = "email"
+                              placeholder       = "jane@company.com")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.email.$dirty && newEmployeeManualAddForm.email.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.email.$dirty && newEmployeeManualAddForm.email.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.email.$error.email") Enter a valid email address
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.email.$error.uniqueField")
+            | Another employee with the email address
+            strong {{viewModel.newEmployeeManualAddForm.email}}
+            | already exists
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.phone.$valid, error:!newEmployeeManualAddForm.phone.$valid, 'ng-pristine':newEmployeeManualAddForm.phone.$pristine}")
+        label.control-label(for = "phone") Phone Number
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              required
+                              data-unique-field = "{\"resource\": \"employee\", \"property\": \"phone\"}"
+                              data-ui-mask      = "'999-999-9999'"
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.phone"
+                              name              = "phone"
+                              placeholder       = "999-999-9999")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.phone.$dirty && newEmployeeManualAddForm.phone.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.phone.$dirty && newEmployeeManualAddForm.phone.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.phone.$error") Enter a valid phone number
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.phone.$error.uniqueField")
+            | Another employee with the phone number
+            strong {{viewModel.newEmployeeManualAddForm.phone}}
+            | already exists
+
+
+
+  .row-fluid
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.businessDivision0.$valid, error:!newEmployeeManualAddForm.businessDivision0.$valid, 'ng-pristine':newEmployeeManualAddForm.businessDivision0.$pristine}")
+        label.control-label(for = "email") Business Division 0
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              data-jquery-auto-complete
+                              required
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.businessDivision0"
+                              data-unique-field = "{\"resource\": \"employee\", \"property\": \"email\"}"
+                              name              = "businessDivision0"
+                              placeholder       = "jane@company.com")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.email.$dirty && newEmployeeManualAddForm.email.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.email.$dirty && newEmployeeManualAddForm.email.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.email.$error.email") Enter a valid email address
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.email.$error.uniqueField")
+            | Another employee with the email address
+            strong {{viewModel.newEmployeeManualAddForm.email}}
+            | already exists
+  .row-fluid
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.businessDivision1.$valid, error:!newEmployeeManualAddForm.businessDivision1.$valid, 'ng-pristine':newEmployeeManualAddForm.businessDivision1.$pristine}")
+        label.control-label(for = "phone") Business Division 1
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              required
+                              data-unique-field = "{\"resource\": \"employee\", \"property\": \"phone\"}"
+                              data-ui-mask      = "'999-999-9999'"
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.businessDivision1"
+                              name              = "phone"
+                              placeholder       = "999-999-9999")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$dirty && newEmployeeManualAddForm.businessDivision1.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$dirty && newEmployeeManualAddForm.businessDivision1.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$error") Enter a valid phone number
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$error.uniqueField")
+            | Another employee with the phone number
+            strong {{viewModel.newEmployeeManualAddForm.phone}}
+            | already exists
+  .row-fluid
+    .span6
+      .control-group(data-ng-class = "{success:newEmployeeManualAddForm.businessDivision1.$valid, error:!newEmployeeManualAddForm.businessDivision1.$valid, 'ng-pristine':newEmployeeManualAddForm.businessDivision1.$pristine}")
+        label.control-label(for = "phone") Business Division 2
+        .controls.input-icon
+          input.m-wrap.span10(type              = "text"
+                              required
+                              data-unique-field = "{\"resource\": \"employee\", \"property\": \"phone\"}"
+                              data-ui-mask      = "'999-999-9999'"
+                              data-ng-model     = "viewModel.newEmployeeManualAddForm.businessDivision1"
+                              name              = "phone"
+                              placeholder       = "999-999-9999")
+          span.input-success(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$dirty && newEmployeeManualAddForm.businessDivision1.$valid")
+            i.icon-ok
+          span.input-error(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$dirty && newEmployeeManualAddForm.businessDivision1.$invalid")
+            i.icon-exclamation-sign
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$error") Enter a valid phone number
+          span.help-inline(data-ng-show = "newEmployeeManualAddForm.businessDivision1.$error.uniqueField")
+            | Another employee with the phone number
+            strong {{viewModel.newEmployeeManualAddForm.phone}}
+            | already exists
+
+
+
+  .row-fluid(style="display:none;")
+    .span6
+      .control-group
+        label.control-label(for="delegate") Delegate
+        .controls
+          .controls
+            label.checkbox.line
+              .checker
+                span(data-ng-class = "{checked: viewModel.newEmployeeManualAddForm.delegate}"
+                     data-ng-click = "viewModel.newEmployeeManualAddForm.delegate = !viewModel.newEmployeeManualAddForm.delegate")
+                  input(type          = "checkbox"
+                        data-ng-model = "viewModel.newEmployeeManualAddForm.delegate"
+                        name          = "delegate")
+              | This employee is a delegate
+            span.help-inline This will create an account for your delegate to log-in and submit exercises
+
+  .form-actions(data-ng-init = "viewModel.newEmployeeManualAddForm.submitting = false;")
+    button.btn.pull-right(data-ng-class    = "{true:'black',false:'green'}[viewModel.newEmployeeManualAddForm.submitting]"
+                          data-ng-disabled = "newEmployeeManualAddForm.$invalid || viewModel.newEmployeeManualAddForm.submitting"
+                          data-ng-click    = "viewModel.showAddNewEmployeeSubmit()"
+                          type             = "submit")
+      p(data-ng-hide = "viewModel.newEmployeeManualAddForm.submitting")
+        i.icon-ok.m-icon-white
+        |&nbsp;Add Employee
+      p(data-ng-show = "viewModel.newEmployeeManualAddForm.submitting")
+        i.icon-cog.icon-spin
+        |&nbsp;Saving...
